@@ -1,10 +1,41 @@
 <script>
     import { link } from "svelte-spa-router";
+
+    import {
+        useForm,
+        validators,
+        HintGroup,
+        Hint,
+        email,
+        required,
+    } from "svelte-use-form";
+
+    const form = useForm();
 </script>
 
-<h1>login</h1>
-<form>
-    <input type="text" />
-    <input type="password" />
-    <input type="submit" value="log in" />
+<form use:form>
+    <h1>Login</h1>
+
+    <input type="email" name="email" use:validators={[required, email]} />
+    <HintGroup for="email">
+        <Hint on="required">This is a mandatory field</Hint>
+        <Hint on="email" hideWhenRequired>Email is not valid</Hint>
+    </HintGroup>
+
+    <input type="password" name="password" use:validators={[required]} />
+    <Hint for="password" on="required">This is a mandatory field</Hint>
+
+    <button disabled={!$form.valid}>Login</button>
 </form>
+<a href="/user-register" use:link>회원가입</a>
+
+<pre>
+{JSON.stringify($form, null, " ")}
+</pre>
+
+<style>
+    :global(.touched:invalid) {
+        border-color: red;
+        outline-color: red;
+    }
+</style>
