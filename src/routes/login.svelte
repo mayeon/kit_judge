@@ -14,12 +14,11 @@
 </script>
 
 <form use:form>
-    <h1>Login</h1>
+    <h1>로그인</h1>
 
-    <input type="email" name="email" use:validators={[required, email]} />
-    <HintGroup for="email">
+    <input type="text" name="id" use:validators={[required]} />
+    <HintGroup for="id">
         <Hint on="required">This is a mandatory field</Hint>
-        <Hint on="email" hideWhenRequired>Email is not valid</Hint>
     </HintGroup>
 
     <input type="password" name="password" use:validators={[required]} />

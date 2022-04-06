@@ -18,18 +18,24 @@
 
 <main>
     <form use:form>
-        <h1>Registration</h1>
-        <label for="email">Email</label>
-        <input type="email" name="email" use:validators={[required, email]} />
-        <HintGroup for="email">
+        <h1>회원가입</h1>
+        <label for="id">아이디</label>
+        <input type="text" name="id" use:validators={[required]} />
+        <HintGroup for="id">
             <Hint on="required">{requiredMessage}</Hint>
-            <Hint on="email" hideWhenRequired>This must be a valid email</Hint>
         </HintGroup>
 
-        <label for="name">Name</label>
-        <input type="text" name="name" />
+        <label for="name">이름</label>
+        <input type="text" name="name" use:validators={[required]} />
 
-        <label for="password">Password</label>
+        <label for="studentNum">학번</label>
+        <input
+            type="number"
+            name="studentNum"
+            use:validators={[required, minLength(8)]}
+        />
+
+        <label for="password">비밀번호</label>
         <input
             type="password"
             name="password"
@@ -45,7 +51,7 @@
             </Hint>
         </HintGroup>
 
-        <label for="passwordConfirmation">Password Confirmation</label>
+        <label for="passwordConfirmation">비밀번호 확인</label>
         <input
             type="password"
             name="passwordConfirmation"
@@ -58,9 +64,7 @@
             >
         </HintGroup><br />
 
-        <button disabled={!$form.valid} on:click|preventDefault>
-            Submit
-        </button>
+        <button disabled={!$form.valid} on:click|preventDefault> 제출 </button>
     </form>
     <pre>
 		{JSON.stringify($form, null, 1)}
