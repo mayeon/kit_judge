@@ -15,12 +15,13 @@
 
 <form use:form>
     <h1>로그인</h1>
-
+    <label for="id">아이디</label>
     <input type="text" name="id" use:validators={[required]} />
     <HintGroup for="id">
         <Hint on="required">This is a mandatory field</Hint>
     </HintGroup>
 
+    <label for="password">비밀번호</label>
     <input type="password" name="password" use:validators={[required]} />
     <Hint for="password" on="required">This is a mandatory field</Hint>
 
