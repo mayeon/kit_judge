@@ -12,13 +12,26 @@
     import { passwordMatch, containNumbers } from "./customValidators";
 
     const form = useForm();
-
     const requiredMessage = "This field is required";
+
+    let type = false;
 </script>
 
 <main>
     <form use:form>
         <h1>회원가입</h1>
+        <label for="type">교수자</label>
+        <input type="checkbox" name="type" bind:checked={type} />
+
+        {#if !type}
+            <label for="studentNum">학번</label>
+            <input
+                type="number"
+                name="studentNum"
+                use:validators={[required, minLength(8)]}
+            />
+        {/if}
+
         <label for="id">아이디</label>
         <input type="text" name="id" use:validators={[required]} />
         <HintGroup for="id">
@@ -27,13 +40,6 @@
 
         <label for="name">이름</label>
         <input type="text" name="name" use:validators={[required]} />
-
-        <label for="studentNum">학번</label>
-        <input
-            type="number"
-            name="studentNum"
-            use:validators={[required, minLength(8)]}
-        />
 
         <label for="password">비밀번호</label>
         <input
@@ -68,6 +74,7 @@
     </form>
     <pre>
 		{JSON.stringify($form, null, 1)}
+        교수자 : {type}
 	</pre>
 </main>
 
