@@ -13,6 +13,7 @@
         lineWrapping: true,
         value: code,
         theme: "dracula",
+        indentUnit: 4,
     };
     let editor;
     let cursor_activity = false;
