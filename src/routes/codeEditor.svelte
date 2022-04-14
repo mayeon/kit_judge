@@ -4,7 +4,8 @@
     import "codemirror/theme/dracula.css";
 
     import CodeMirror from "../component/codeMirror.svelte";
-    import { onMount } from "svelte";
+    import Button, { Group, Label } from "@smui/button";
+
     const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t}\n}`;
     const options = {
         matchBrackets: true,
@@ -15,17 +16,19 @@
         theme: "dracula",
         indentUnit: 4,
     };
+    let codes = [{ id: 1, text: `Main` }];
     let editor;
-    let cursor_activity = false;
-    onMount(() => {
-        console.log("Editor: ", editor);
-    });
 </script>
 
-<CodeMirror
-    on:activity={() => {}}
-    on:change={() => {}}
-    bind:editor
-    {options}
-    class="editor"
-/>
+<div>
+    <Group variant="outlined">
+        {#each codes as code}
+            <Button on:click={() => {}} variant="outlined">
+                <Label>{code.text}</Label>
+            </Button>
+        {/each}
+    </Group>
+    <Button>+</Button>
+    <CodeMirror bind:editor {options} class="editor" />
+    <Button variant="raised" class="button-shaped-round">제출</Button>
+</div>

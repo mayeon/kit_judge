@@ -4,23 +4,19 @@
     export let explain;
     export let d_day;
     export let is_star;
+
+    import Paper, { Title, Subtitle, Content } from "@smui/paper";
 </script>
 
-<div>
-    <h1>과제이름 {name}</h1>
-    <h2>과목명 {class_name}</h2>
-    <h2>설명 {explain}</h2>
-    <h2>디데이 {d_day}</h2>
+<Paper>
+    <Title>과제이름 {name}</Title>
+    <Subtitle>과목명 {class_name}</Subtitle>
+    <Content>설명 {explain}</Content>
+    <Subtitle>디데이 {d_day}</Subtitle>
 
     {#if is_star}
         ⭐
     {:else}
         ☆
     {/if}
-</div>
-
-<style>
-    div {
-        border: 1px black solid;
-    }
-</style>
+</Paper>
