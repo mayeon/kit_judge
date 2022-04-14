@@ -5,6 +5,7 @@
 
     import CodeMirror from "../component/codeMirror.svelte";
     import Button, { Group, Label } from "@smui/button";
+    import Paper, { Title, Subtitle, Content } from "@smui/paper";
 
     const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t}\n}`;
     const options = {
@@ -28,7 +29,8 @@
             </Button>
         {/each}
     </Group>
-    <Button>+</Button>
-    <CodeMirror bind:editor {options} class="editor" />
+    <Paper>
+        <CodeMirror bind:editor {options} class="editor" />
+    </Paper>
     <Button variant="raised" class="button-shaped-round">제출</Button>
 </div>
