@@ -1,6 +1,7 @@
 <script>
     import "codemirror/mode/javascript/javascript";
     import "codemirror/mode/clike/clike.js";
+    import "codemirror/addon/edit/closebrackets.js";
     import "codemirror/theme/dracula.css";
 
     import CodeMirror from "../component/codeMirror.svelte";
@@ -10,6 +11,7 @@
     const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t}\n}`;
     const options = {
         matchBrackets: true,
+        autoCloseBrackets: true,
         mode: "text/x-java",
         lineNumbers: true,
         lineWrapping: true,
