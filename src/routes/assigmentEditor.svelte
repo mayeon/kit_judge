@@ -37,6 +37,11 @@
     import { DateInput } from "date-picker-svelte";
     let date = new Date();
     let date1 = new Date();
+
+    import Select, { Option } from "@smui/select";
+
+    let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
+    let value = "";
 </script>
 
 <svelte:head>
@@ -46,9 +51,12 @@
 <Textfield bind:value={title} label="제목">
     <HelperText slot="helper">Helper Text</HelperText>
 </Textfield>
-<Textfield bind:value={className} label="과목명">
-    <HelperText slot="helper">Helper Text</HelperText>
-</Textfield>
+<Select bind:value label="과목명">
+    <Option value="" />
+    {#each classes as className}
+        <Option value={className}>{className}</Option>
+    {/each}
+</Select>
 <h1>시작일</h1>
 <DateInput bind:value={date} format="yyyy-MM-dd HH:mm" />
 <h1>종료일</h1>
