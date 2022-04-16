@@ -18,6 +18,7 @@
     "@smui/top-app-bar": "^6.0.0-beta.16",
     "@types/codemirror": "^5.60.5",
     "@types/quill": "^2.0.9",
+    "date-picker-svelte": "^2.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
