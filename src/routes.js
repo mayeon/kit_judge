@@ -4,7 +4,8 @@ import Main from "./routes/main.svelte";
 import codeWrite from "./routes/codeEditor.svelte";
 import Test from "./routes/test.svelte";
 import AssigmentWrite from "./routes/assigmentEditor.svelte";
-import AssigmentDetail from "./routes/assigmentDetail.svelte"
+import AssigmentDetail from "./routes/assigmentDetail.svelte";
+import ClassControll from "./routes/classControll.svelte";
 
 const routes = {
     "/": Login,
@@ -14,7 +15,8 @@ const routes = {
     "/write-code": codeWrite,
     "/test": Test,
     "/write-assigment": AssigmentWrite,
-    "/view-assigment": AssigmentDetail
+    "/view-assigment": AssigmentDetail,
+    "/controll-class": ClassControll,
 };
 
 export default routes

@@ -13,12 +13,6 @@
     let initialOff = false;
 </script>
 
-<svelte:head>
-    <link
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet"
-    />
-</svelte:head>
 <div class="paper">
     <Paper>
         <Title>과제이름 {name}</Title>

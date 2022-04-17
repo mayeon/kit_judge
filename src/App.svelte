@@ -4,6 +4,13 @@
     import routes from "./routes";
 </script>
 
+<svelte:head>
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    />
+</svelte:head>
+
 <main>
     <Header />
     <Router {routes} />
