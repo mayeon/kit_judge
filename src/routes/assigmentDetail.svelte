@@ -1,19 +1,19 @@
 <script lang="ts">
-    import Textfield from "@smui/textfield";
-    import HelperText from "@smui/textfield/helper-text";
-
-    let valueA = "";
-    let valueB = "";
-    let valueC = "";
-    let valueD = "";
+    import Paper, { Title, Subtitle, Content } from "@smui/paper";
+    const elevation = 10;
 </script>
 
-<div class="columns margins">
-    <div>
-        <Textfield bind:value={valueA} label="제목">
-            <HelperText slot="helper">Helper Text</HelperText>
-        </Textfield>
-
-        <pre class="status">Value: {valueA}</pre>
-    </div>
+<div class="paper-container">
+    <Paper {elevation}>
+        <Title>과제 이름</Title>
+        <Subtitle>과목 이름</Subtitle>
+        <Subtitle>기간 : 2020/12/12 ~ 2102/21/12</Subtitle>
+        <Content>설명</Content>
+    </Paper>
 </div>
+
+<style>
+    .paper-container {
+        margin: 10px;
+    }
+</style>
