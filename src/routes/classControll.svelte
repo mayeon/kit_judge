@@ -10,7 +10,7 @@
             <Paper>
                 <div>
                     <Title>과목{i + 1}</Title>
-                    <IconButton class="material-icons">person_add</IconButton>
+                    <IconButton class="material-icons">groups</IconButton>
                     <IconButton class="material-icons">delete</IconButton>
                 </div>
                 <Subtitle>생성일 : 2012/12/12</Subtitle>
