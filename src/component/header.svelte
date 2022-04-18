@@ -27,10 +27,7 @@
             <Title on:click={() => push("/")}>금오공대 과제 채점 시스템</Title>
         </Section>
         <Section>
-            <a href="/class" use:link>
-                강의실
-                <Icon class="material-icons" on>school</Icon></a
-            >
+            <a href="/class" use:link> 강의실 </a>
         </Section>
     </Row>
 </TopAppBar>
