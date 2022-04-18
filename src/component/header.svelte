@@ -1,5 +1,8 @@
 <script>
     import { push } from "svelte-spa-router";
+    import { link } from "svelte-spa-router";
+    import IconButton, { Icon } from "@smui/icon-button";
+    import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
 
     let selected;
     let options = [
@@ -7,8 +10,6 @@
         { id: 2, text: `강의실 2` },
         { id: 3, text: `강의실 2` },
     ];
-
-    import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
 
     let prominent = false;
     let dense = true;
@@ -26,15 +27,16 @@
             <Title on:click={() => push("/")}>금오공대 과제 채점 시스템</Title>
         </Section>
         <Section>
-            <form>
-                <select bind:value={selected}>
-                    {#each options as option}
-                        <option value={option}>
-                            {option.text}
-                        </option>
-                    {/each}
-                </select>
-            </form>
+            <a href="/class" use:link>
+                강의실
+                <Icon class="material-icons" on>school</Icon></a
+            >
         </Section>
     </Row>
 </TopAppBar>
+
+<style>
+    a {
+        color: aliceblue;
+    }
+</style>
