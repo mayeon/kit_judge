@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import Textfield from "@smui/textfield";
     import HelperText from "@smui/textfield/helper-text";
+    import IconButton, { Icon } from "@smui/icon-button";
     import Button, { Group, Label } from "@smui/button";
 
     import Quill from "quill";
@@ -42,6 +43,15 @@
 
     let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
     let value = "";
+
+    import Card, { Content } from "@smui/card";
+    let testcases = [
+        { input: "123", output: "246" },
+        { input: "123", output: "246" },
+    ];
+
+    let input = "";
+    let output = "";
 </script>
 
 <svelte:head>
@@ -64,6 +74,44 @@
 <main>
     <div id="editor" />
 </main>
+
+<h1>테스트 케이스</h1>
+<div>
+    {#each testcases as testcase}
+        <div class="card">
+            <Card>
+                <div class="content-box">
+                    <Content>
+                        <h2>입력</h2>
+                        {testcase.input}
+                    </Content>
+                    <Content>
+                        <h2>출력</h2>
+                        {testcase.output}
+                    </Content>
+                </div>
+            </Card>
+        </div>
+    {/each}
+    <Card>
+        <div class="card">
+            <Content>
+                <Textfield bind:value={input} label="입력">
+                    <HelperText slot="helper"
+                        >테스트케이스의 입력을 넣어주세요.
+                    </HelperText>
+                </Textfield>
+                <Textfield bind:value={output} label="출력">
+                    <HelperText slot="helper"
+                        >테스트케이스의 출력을 넣어주세요.
+                    </HelperText>
+                </Textfield>
+            </Content>
+            <IconButton class="material-icons">add</IconButton>
+        </div>
+    </Card>
+</div>
+
 <Button variant="raised" class="button-shaped-round">제출</Button>
 
 <style>
@@ -72,6 +120,14 @@
         padding: 1em;
         max-width: 240px;
         margin: 0 auto;
+    }
+
+    .card {
+        margin: 10px;
+    }
+
+    .content-box {
+        display: flex;
     }
 
     #editor {
