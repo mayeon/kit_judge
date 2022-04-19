@@ -52,11 +52,17 @@
 
     let input = "";
     let output = "";
+
+    function handleKeydown(event) {
+        console.log(event.key);
+    }
 </script>
 
 <svelte:head>
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
 </svelte:head>
+
+<!-- <svelte:window on:keydown={handleKeydown}/> -->
 
 <Textfield bind:value={title} label="제목">
     <HelperText slot="helper">Helper Text</HelperText>
@@ -101,7 +107,11 @@
                         >테스트케이스의 입력을 넣어주세요.
                     </HelperText>
                 </Textfield>
-                <Textfield bind:value={output} label="출력">
+                <Textfield
+                    bind:value={output}
+                    label="출력"
+                    on:keydown={handleKeydown}
+                >
                     <HelperText slot="helper"
                         >테스트케이스의 출력을 넣어주세요.
                     </HelperText>
