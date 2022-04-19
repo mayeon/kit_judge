@@ -31,9 +31,3 @@
         </Section>
     </Row>
 </TopAppBar>
-
-<style>
-    a {
-        color: aliceblue;
-    }
-</style>
