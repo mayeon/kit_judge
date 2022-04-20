@@ -1,32 +1,18 @@
 <script>
     import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
-    import IconButton, { Icon } from "@smui/icon-button";
     import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
 
-    let selected;
-    let options = [
-        { id: 1, text: `강의실 1`},
-        { id: 2, text: `강의실 2`},
-        { id: 3, text: `강의실 3`},
-    ];
-
-    let prominent = false;
-    let dense = true;
-    let secondaryColor = false;
-    
     // 로그인 여부 (임시)
     let user = 
     {loggedIn:true};
     // {loggedIn:false};
+    const prominent = false;
+    const dense = true;
+
 </script>
 
-<TopAppBar
-    variant="static"
-    {prominent}
-    {dense}
-    color={secondaryColor ? "secondary" : "primary"}
->
+<TopAppBar variant="static" {prominent} {dense}>
     <Row>
         <Section>
             <Title on:click={() => push("/")}>금오공대 과제 채점 시스템</Title>
@@ -50,7 +36,6 @@
         </Section>
     </Row>
 </TopAppBar>
-
 <style>
     a {
         color: aliceblue;
