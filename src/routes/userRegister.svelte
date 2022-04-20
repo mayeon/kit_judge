@@ -9,7 +9,10 @@
         minLength,
         email,
     } from "svelte-use-form";
-    import { passwordMatch, containNumbers } from "./customValidators";
+    import {
+        passwordMatch,
+        containNumbers,
+    } from "../component/customValidators";
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
     let type = false;
@@ -20,7 +23,13 @@
         <h1>회원가입</h1>
 
         <div class="form-check form-switch switch">
-            <input class="form-check-input" type="checkbox" role="switch" name="type" bind:checked={type}>
+            <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                name="type"
+                bind:checked={type}
+            />
             <label class="form-check-label" for="type">교수자</label>
         </div>
 
@@ -45,7 +54,13 @@
         {/if}
 
         <div class="input-box">
-            <input type="text" class="form-control" name="id" use:validators={[required]} placeholder="아이디" />
+            <input
+                type="text"
+                class="form-control"
+                name="id"
+                use:validators={[required]}
+                placeholder="아이디"
+            />
             <div class="hint">
                 <HintGroup for="id">
                     <Hint on="required">{requiredMessage}</Hint>
@@ -54,7 +69,13 @@
         </div>
 
         <div class="input-box">
-            <input type="text" class="form-control" name="name" use:validators={[required]} placeholder="이름" />
+            <input
+                type="text"
+                class="form-control"
+                name="name"
+                use:validators={[required]}
+                placeholder="이름"
+            />
             <div class="hint">
                 <HintGroup for="name">
                     <Hint on="required">{requiredMessage}</Hint>
@@ -62,7 +83,7 @@
             </div>
         </div>
 
-        <div class="input-box">    
+        <div class="input-box">
             <input
                 type="password"
                 class="form-control"
@@ -76,7 +97,7 @@
                     <Hint on="minLength" hideWhenRequired let:value>
                         최소 {value}자 이상이여야 합니다.
                     </Hint>
-                    <Hint on="containNumbers" hideWhen="minLength" let:value> 
+                    <Hint on="containNumbers" hideWhen="minLength" let:value>
                         최소 {value}개의 숫자가 필요합니다.
                     </Hint>
                 </HintGroup>
@@ -96,14 +117,21 @@
                     <Hint on="required">{requiredMessage}</Hint>
                     <Hint on="passwordMatch" hideWhenRequired>
                         Passwords do not match
-                        </Hint>
+                    </Hint>
                 </HintGroup>
             </div>
         </div>
-        <br>
+        <br />
     </form>
-    <button form="register" id="register-btn" class="btn btn-outline-secondary" disabled={!$form.valid} on:click|preventDefault> 제출 </button>
-
+    <button
+        form="register"
+        id="register-btn"
+        class="btn btn-outline-secondary"
+        disabled={!$form.valid}
+        on:click|preventDefault
+    >
+        제출
+    </button>
 
     <!-- <pre>
 		{JSON.stringify($form, null, 1)}
@@ -155,7 +183,7 @@
         padding-left: 0.5rem;
         color: red;
     }
-    
+
     /* pre {
         height: 80vh;
         overflow: auto;
