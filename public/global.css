@@ -63,10 +63,3 @@ button:not(:disabled):active {
 button:focus {
     border-color: #666;
 }
-
-:root {
-    font-family: 'Noto Sans KR',
-        sans-serif;
-    --bs-font-sans-serif: 'Noto Sans KR',
-        sans-serif
-}

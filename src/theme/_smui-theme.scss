@@ -1,23 +1,25 @@
 @use 'sass:color';
+@use 'sass:string';
 
 // Svelte Colors!
-@use '@material/theme/index'as theme with ($primary: #ff3e00,
-    $secondary: #676778,
+@use '@material/theme/index'as theme with ($primary: #212121,
+    $secondary: #263238,
     $surface: #fff,
     $background: #fff,
     $error: rgb(226, 90, 90),
 );
 
-@use '@material/typography/variables'as typo with ($font-family: $font);
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-$font: 'Noto Sans KR',
-sans-serif;
+$font: string.unquote('Noto Sans KR, sans-serif');
+@use '@material/typography/typography'with ($font-family: $font, );
 
 html,
 body {
     background-color: theme.$surface;
     color: theme.$on-surface;
+    font-family: 'Noto Sans KR',
+        sans-serif;
+    --bs-font-sans-serif: 'Noto Sans KR',
+        sans-serif
 }
 
 a {

@@ -15,6 +15,10 @@ html,
 body {
   background-color: #000;
   color: theme.$on-surface;
+  font-family: 'Noto Sans KR',
+        sans-serif;
+    --bs-font-sans-serif: 'Noto Sans KR',
+        sans-serif
 }
 
 a {
