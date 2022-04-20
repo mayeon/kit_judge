@@ -9,8 +9,7 @@
     $error: rgb(226, 90, 90),
 );
 
-$font: string.unquote('Noto Sans KR, sans-serif');
-@use '@material/typography/typography'with ($font-family: $font, );
+@use '@material/typography/typography'with ($font-family: string.unquote('Noto Sans KR, sans-serif'), );
 
 html,
 body {
