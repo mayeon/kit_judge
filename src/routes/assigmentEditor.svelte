@@ -45,10 +45,7 @@
     let value = "";
 
     import Card, { Content } from "@smui/card";
-    let testcases = [
-        { input: "123", output: "246" },
-        { input: "123", output: "246" },
-    ];
+    let testcases = [];
 
     let input = "";
     let output = "";
@@ -57,13 +54,16 @@
         console.log(event.key);
 
         if (event.keyCode == 13) {
+            console.log(testcases);
             addTestCase();
-            console.log("1");
+            console.log(testcases);
         }
     }
 
     function addTestCase() {
-        testcases.push({ input: input, output: output });
+        testcases = [...testcases, { input: input, output: output }];
+        input = "";
+        output = "";
     }
 </script>
 
@@ -126,7 +126,9 @@
                     </HelperText>
                 </Textfield>
             </Content>
-            <IconButton class="material-icons">add</IconButton>
+            <IconButton class="material-icons" on:click={addTestCase}
+                >add</IconButton
+            >
         </div>
     </Card>
 </div>
