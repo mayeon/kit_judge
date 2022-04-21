@@ -55,6 +55,15 @@
 
     function handleKeydown(event) {
         console.log(event.key);
+
+        if (event.keyCode == 13) {
+            addTestCase();
+            console.log("1");
+        }
+    }
+
+    function addTestCase() {
+        testcases.push({ input: input, output: output });
     }
 </script>
 
