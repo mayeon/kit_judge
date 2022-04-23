@@ -119,14 +119,25 @@
     <Card>
         <div class="card">
             <Content>
-                <Textfield bind:value={input} label="입력">
+                <Textfield
+                    textarea
+                    bind:value={input}
+                    label="입력"
+                    input$rows={4}
+                    input$cols={24}
+                    input$resizable={false}
+                >
                     <HelperText slot="helper"
                         >테스트케이스의 입력을 넣어주세요.
                     </HelperText>
                 </Textfield>
                 <Textfield
+                    textarea
                     bind:value={output}
                     label="출력"
+                    input$rows={4}
+                    input$cols={24}
+                    input$resizable={false}
                     on:keydown={handleKeydown}
                 >
                     <HelperText slot="helper"
