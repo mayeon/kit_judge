@@ -65,6 +65,10 @@
         input = "";
         output = "";
     }
+
+    function deleteCase(testcase) {
+        testcases = testcases.filter((element) => element !== testcase);
+    }
 </script>
 
 <svelte:head>
@@ -105,6 +109,10 @@
                         {testcase.output}
                     </Content>
                 </div>
+                <IconButton
+                    class="material-icons"
+                    on:click={deleteCase(testcase)}>delete</IconButton
+                >
             </Card>
         </div>
     {/each}
