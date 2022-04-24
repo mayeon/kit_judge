@@ -2,6 +2,8 @@
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Card, { Content } from "@smui/card";
 
+    import Testcase from "../component/Testcase.svelte";
+
     const elevation = 10;
 
     let testcases = [
@@ -18,20 +20,7 @@
         <Content>설명</Content>
 
         {#each testcases as testcase}
-            <div class="card">
-                <Card>
-                    <div class="content-box">
-                        <Content>
-                            <h2>입력</h2>
-                            {testcase.input}
-                        </Content>
-                        <Content>
-                            <h2>출력</h2>
-                            {testcase.output}
-                        </Content>
-                    </div>
-                </Card>
-            </div>
+            <Testcase input={testcase.input} output={testcase.output} />
         {/each}
     </Paper>
 </div>
