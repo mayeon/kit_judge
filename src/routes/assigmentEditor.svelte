@@ -4,6 +4,10 @@
     import HelperText from "@smui/textfield/helper-text";
     import IconButton, { Icon } from "@smui/icon-button";
     import Button, { Group, Label } from "@smui/button";
+    import { DateInput } from "date-picker-svelte";
+    import Select, { Option } from "@smui/select";
+    import Card, { Content } from "@smui/card";
+    import Testcase from "../component/Testcase.svelte";
 
     import Quill from "quill";
     let quill = null;
@@ -35,16 +39,12 @@
     let title = "";
     let className = "";
 
-    import { DateInput } from "date-picker-svelte";
     let date = new Date();
     let date1 = new Date();
-
-    import Select, { Option } from "@smui/select";
 
     let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
     let value = "";
 
-    import Card, { Content } from "@smui/card";
     let testcases = [];
 
     let input = "";
@@ -98,22 +98,12 @@
 <div>
     {#each testcases as testcase}
         <div class="card">
-            <Card>
-                <div class="content-box">
-                    <Content>
-                        <h2>입력</h2>
-                        {testcase.input}
-                    </Content>
-                    <Content>
-                        <h2>출력</h2>
-                        {testcase.output}
-                    </Content>
-                </div>
+            <Testcase input={testcase.input} output={testcase.output}>
                 <IconButton
                     class="material-icons"
                     on:click={deleteCase(testcase)}>delete</IconButton
                 >
-            </Card>
+            </Testcase>
         </div>
     {/each}
     <Card>
