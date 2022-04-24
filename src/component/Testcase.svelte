@@ -19,3 +19,9 @@
     </div>
     <slot />
 </Card>
+
+<style>
+    .content-box {
+        display: flex;
+    }
+</style>

@@ -2,8 +2,8 @@
     import { onMount } from "svelte";
     import Textfield from "@smui/textfield";
     import HelperText from "@smui/textfield/helper-text";
-    import IconButton, { Icon } from "@smui/icon-button";
-    import Button, { Group, Label } from "@smui/button";
+    import IconButton from "@smui/icon-button";
+    import Button from "@smui/button";
     import { DateInput } from "date-picker-svelte";
     import Select, { Option } from "@smui/select";
     import Card, { Content } from "@smui/card";
@@ -38,17 +38,13 @@
 
     let title = "";
     let className = "";
-
-    let date = new Date();
-    let date1 = new Date();
+    let start = new Date();
+    let end = new Date();
 
     let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
-    let value = "";
-
     let testcases = [];
-
-    let input = "";
-    let output = "";
+    let testcaseInput = "";
+    let testcaseOutput = "";
 
     function handleKeydown(event) {
         console.log(event.key);
@@ -61,9 +57,12 @@
     }
 
     function addTestCase() {
-        testcases = [...testcases, { input: input, output: output }];
-        input = "";
-        output = "";
+        testcases = [
+            ...testcases,
+            { input: testcaseInput, output: testcaseOutput },
+        ];
+        testcaseInput = "";
+        testcaseOutput = "";
     }
 
     function deleteCase(testcase) {
@@ -80,16 +79,16 @@
 <Textfield bind:value={title} label="제목">
     <HelperText slot="helper">Helper Text</HelperText>
 </Textfield>
-<Select bind:value label="과목명">
+<Select bind:value={className} label="과목명">
     <Option value="" />
-    {#each classes as className}
-        <Option value={className}>{className}</Option>
+    {#each classes as class_name}
+        <Option value={class_name}>{class_name}</Option>
     {/each}
 </Select>
 <h1>시작일</h1>
-<DateInput bind:value={date} format="yyyy-MM-dd HH:mm" />
+<DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
 <h1>종료일</h1>
-<DateInput bind:value={date1} format="yyyy-MM-dd HH:mm" />
+<DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
 <main>
     <div id="editor" />
 </main>
@@ -111,7 +110,7 @@
             <Content>
                 <Textfield
                     textarea
-                    bind:value={input}
+                    bind:value={testcaseInput}
                     label="입력"
                     input$rows={4}
                     input$cols={24}
@@ -123,7 +122,7 @@
                 </Textfield>
                 <Textfield
                     textarea
-                    bind:value={output}
+                    bind:value={testcaseOutput}
                     label="출력"
                     input$rows={4}
                     input$cols={24}
@@ -154,10 +153,6 @@
 
     .card {
         margin: 10px;
-    }
-
-    .content-box {
-        display: flex;
     }
 
     #editor {
