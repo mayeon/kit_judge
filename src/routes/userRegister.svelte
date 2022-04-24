@@ -12,8 +12,7 @@
     import {
         passwordMatch,
         containNumbers,
-    } from "../component/customValidators";
-    const form = useForm();
+    } from "../functio../functions/customValidatorsnst form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
     let type = false;
 </script>
