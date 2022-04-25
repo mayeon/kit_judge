@@ -2,10 +2,10 @@
 @use 'sass:string';
 
 // Svelte Colors!
-@use '@material/theme/index'as theme with ($primary: #212121,
+@use '@material/theme/index'as theme with ($primary: #fff,
     $secondary: #263238,
     $surface: #fff,
-    $background: #fff,
+    $background: rgb(246 247 251),
     $error: rgb(226, 90, 90),
 );
 
@@ -13,7 +13,7 @@
 
 html,
 body {
-    background-color: theme.$surface;
+    background-color: #f6f7fb;
     color: theme.$on-surface;
     font-family: 'Noto Sans KR',
         sans-serif;

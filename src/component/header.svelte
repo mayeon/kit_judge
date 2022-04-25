@@ -23,6 +23,6 @@
 
 <style>
     a {
-        color: aliceblue;
+        color: #263238;
     }
 </style>
