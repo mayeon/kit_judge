@@ -53,8 +53,7 @@
                         id="register-btn"
                         type="button"
                         class="btn btn-outline-secondary"
-                        onclick="location.href='/#/user-register'"
-                        >회원가입</button
+                        onclick="location.href='/#/user/new'">회원가입</button
                     >
                 </div>
 
