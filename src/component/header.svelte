@@ -10,19 +10,27 @@
     const dense = true;
 </script>
 
-<TopAppBar variant="static" {prominent} {dense}>
-    <Row>
-        <Section>
-            <Title on:click={() => push("/")}>금오공대 과제 채점 시스템</Title>
-        </Section>
-        <Section>
-            <a href="/class" use:link> 강의실 </a>
-        </Section>
-    </Row>
-</TopAppBar>
+<div class="top-bar">
+    <TopAppBar variant="static" {prominent} {dense}>
+        <Row>
+            <Section>
+                <Title on:click={() => push("/")}
+                    >금오공대 과제 채점 시스템</Title
+                >
+            </Section>
+            <Section>
+                <a href="/class" use:link> 강의실 </a>
+            </Section>
+        </Row>
+    </TopAppBar>
+</div>
 
 <style>
     a {
         color: #263238;
+    }
+
+    .top-bar {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
 </style>
