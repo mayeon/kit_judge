@@ -8,6 +8,7 @@
     import Select, { Option } from "@smui/select";
     import Card, { Content } from "@smui/card";
     import Testcase from "../component/Testcase.svelte";
+    import Paper, { Title, Subtitle } from "@smui/paper";
 
     import Quill from "quill";
     let quill = null;
@@ -75,71 +76,61 @@
 </svelte:head>
 
 <!-- <svelte:window on:keydown={handleKeydown}/> -->
+<Paper>
+    <Textfield bind:value={title} label="제목">
+        <HelperText slot="helper">Helper Text</HelperText>
+    </Textfield>
+    <Select bind:value={className} label="과목명">
+        <Option value="" />
+        {#each classes as class_name}
+            <Option value={class_name}>{class_name}</Option>
+        {/each}
+    </Select>
+    <h1>시작일</h1>
+    <DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
+    <h1>종료일</h1>
+    <DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
+    <main>
+        <div id="editor" />
+    </main>
 
-<Textfield bind:value={title} label="제목">
-    <HelperText slot="helper">Helper Text</HelperText>
-</Textfield>
-<Select bind:value={className} label="과목명">
-    <Option value="" />
-    {#each classes as class_name}
-        <Option value={class_name}>{class_name}</Option>
-    {/each}
-</Select>
-<h1>시작일</h1>
-<DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
-<h1>종료일</h1>
-<DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
-<main>
-    <div id="editor" />
-</main>
-
-<h1>테스트 케이스</h1>
-<div>
+    <h1>테스트 케이스</h1>
     {#each testcases as testcase}
-        <div class="card">
-            <Testcase input={testcase.input} output={testcase.output}>
-                <IconButton
-                    class="material-icons"
-                    on:click={deleteCase(testcase)}>delete</IconButton
-                >
-            </Testcase>
-        </div>
-    {/each}
-    <Card>
-        <div class="card">
-            <Content>
-                <Textfield
-                    textarea
-                    bind:value={testcaseInput}
-                    label="입력"
-                    input$rows={4}
-                    input$cols={24}
-                    input$resizable={false}
-                >
-                    <HelperText slot="helper"
-                        >테스트케이스의 입력을 넣어주세요.
-                    </HelperText>
-                </Textfield>
-                <Textfield
-                    textarea
-                    bind:value={testcaseOutput}
-                    label="출력"
-                    input$rows={4}
-                    input$cols={24}
-                    input$resizable={false}
-                    on:keydown={handleKeydown}
-                >
-                    <HelperText slot="helper"
-                        >테스트케이스의 출력을 넣어주세요.
-                    </HelperText>
-                </Textfield>
-            </Content>
-            <IconButton class="material-icons" on:click={addTestCase}
-                >add</IconButton
+        <Paper variant="outlined">
+            <Title>입력</Title>
+            <Content>{testcase.input}</Content>
+            <Title>출력</Title>
+            <Content>{testcase.output}</Content>
+
+            <IconButton class="material-icons" on:click={deleteCase(testcase)}
+                >delete</IconButton
             >
-        </div>
-    </Card>
-</div>
+        </Paper>
+    {/each}
+    <Textfield
+        textarea
+        bind:value={testcaseInput}
+        label="입력"
+        input$rows={4}
+        input$cols={24}
+        input$resizable={false}
+    >
+        <HelperText slot="helper">테스트케이스의 입력을 넣어주세요.</HelperText>
+    </Textfield>
+    <Textfield
+        textarea
+        bind:value={testcaseOutput}
+        label="출력"
+        input$rows={4}
+        input$cols={24}
+        input$resizable={false}
+        on:keydown={handleKeydown}
+    >
+        <HelperText slot="helper">테스트케이스의 출력을 넣어주세요.</HelperText>
+    </Textfield>
+    <IconButton class="material-icons" on:click={addTestCase}>add</IconButton>
+</Paper>
+<br />
 
 <Button variant="raised" class="button-shaped-round">제출</Button>
 
