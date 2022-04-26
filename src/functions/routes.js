@@ -7,6 +7,7 @@ import AssigmentWrite from "../routes/assigmentEditor.svelte";
 import AssigmentDetail from "../routes/assigmentDetail.svelte";
 import ClassControll from "../routes/classControll.svelte";
 import ClassStudentControll from "../routes/classStudentControll.svelte";
+import AssigmentResult from "../routes/AssigmentResult.svelte";
 
 const routes = {
     "/": Login,
@@ -16,7 +17,7 @@ const routes = {
     "/code": codeWrite,
     "/assigment": AssigmentDetail,
     "/assigment/new": AssigmentWrite,
-    "/assigment/submit": ClassStudentControll,
+    "/assigment/submit": AssigmentResult,
     "/class": ClassControll,
     "/class/student": ClassStudentControll,
     "/test": Test,
