@@ -4,7 +4,15 @@
     import routes from "./functions/routes";
 </script>
 
+<Header />
 <main>
-    <Header />
     <Router {routes} />
 </main>
+
+<style>
+    main {
+        padding: 1em;
+        max-width: 90%;
+        margin: 1em auto;
+    }
+</style>

@@ -2,8 +2,9 @@
 @use 'sass:string';
 
 // Svelte Colors!
-@use '@material/theme/index'as theme with ($primary: #fff,
-    $secondary: #263238,
+@use '@material/theme/index'as theme with ( // $primary: #fff,
+    $primary: rgb(45, 66, 255),
+    $secondary: #fff,
     $surface: #fff,
     $background: rgb(246 247 250),
     $error: rgb(226, 90, 90),

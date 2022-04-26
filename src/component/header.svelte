@@ -11,7 +11,7 @@
 </script>
 
 <div class="top-bar">
-    <TopAppBar variant="static" {prominent} {dense}>
+    <TopAppBar variant="static" {prominent} {dense} color="secondary">
         <Row>
             <Section>
                 <Title on:click={() => push("/")}
