@@ -11,14 +11,15 @@ import ClassStudentControll from "../routes/classStudentControll.svelte";
 const routes = {
     "/": Login,
     "/login": Login,
-    "/user-register": UserRegister,
+    "/user/new": UserRegister,
     "/main": Main,
-    "/write-code": codeWrite,
-    "/test": Test,
-    "/write-assigment": AssigmentWrite,
-    "/view-assigment": AssigmentDetail,
+    "/code": codeWrite,
+    "/assigment": AssigmentDetail,
+    "/assigment/new": AssigmentWrite,
+    "/assigment/submit": ClassStudentControll,
     "/class": ClassControll,
     "/class/student": ClassStudentControll,
+    "/test": Test,
 };
 
 export default routes
