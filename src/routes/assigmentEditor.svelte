@@ -96,17 +96,13 @@
 
     <h1>테스트 케이스</h1>
     {#each testcases as testcase}
-        <Paper variant="outlined">
-            <Title>입력</Title>
-            <Content>{testcase.input}</Content>
-            <Title>출력</Title>
-            <Content>{testcase.output}</Content>
-
+        <Testcase input={testcase.input} output={testcase.output}>
             <IconButton class="material-icons" on:click={deleteCase(testcase)}
                 >delete</IconButton
             >
-        </Paper>
+        </Testcase>
     {/each}
+
     <Textfield
         textarea
         bind:value={testcaseInput}
@@ -117,6 +113,7 @@
     >
         <HelperText slot="helper">테스트케이스의 입력을 넣어주세요.</HelperText>
     </Textfield>
+
     <Textfield
         textarea
         bind:value={testcaseOutput}
