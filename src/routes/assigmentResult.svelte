@@ -1,6 +1,6 @@
 <script>
     import Paper, { Title, Subtitle } from "@smui/paper";
-    import Card, { Content } from "@smui/card";
+    import Button, { Label } from "@smui/button";
     import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
 
     let assigments = [
@@ -27,7 +27,11 @@
                 <Row>
                     <Cell>{assigment.id}</Cell>
                     <Cell numeric>{assigment.score}</Cell>
-                    <Cell>코드보기</Cell>
+                    <Cell>
+                        <Button>
+                            <Label>코드보기</Label>
+                        </Button>
+                    </Cell>
                 </Row>
             {/each}
         </Body>
