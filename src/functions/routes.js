@@ -5,7 +5,7 @@ import UserRegister from "../routes/userRegister.svelte";
 
 import AssigmentWrite from "../routes/assigmentEditor.svelte";
 import AssigmentDetail from "../routes/assigmentDetail.svelte";
-import AssigmentResult from "../routes/AssigmentResult.svelte";
+import AssigmentResult from "../routes/assigmentResult.svelte";
 
 import ClassControll from "../routes/classControll.svelte";
 import ClassStudentControll from "../routes/classStudentControll.svelte";
