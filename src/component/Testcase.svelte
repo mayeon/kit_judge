@@ -1,27 +1,29 @@
 <script>
-    import Card, { Content } from "@smui/card";
-    import Paper, { Title, Subtitle } from "@smui/paper";
+    import Paper, { Title, Subtitle, Content } from "@smui/paper";
 
     export let input;
     export let output;
 </script>
 
-<Card>
-    <div class="content-box">
+<Paper class="testcase-paper">
+    <div>
         <Subtitle>입력</Subtitle>
         <Content>
             {input}
         </Content>
+    </div>
+    <div>
         <Subtitle>출력</Subtitle>
         <Content>
             {output}
         </Content>
     </div>
     <slot />
-</Card>
+</Paper>
 
 <style>
-    .content-box {
+    :global(.testcase-paper) {
         display: flex;
+        justify-content: space-around;
     }
 </style>
