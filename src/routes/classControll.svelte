@@ -11,12 +11,13 @@
             <Paper>
                 <div>
                     <Title>과목{i + 1}</Title>
-                    <IconButton class="material-icons">groups</IconButton>
-                    <IconButton class="material-icons">delete</IconButton>
                     <IconButton
                         class="material-icons"
-                        on:click={() => push("/class/student")}>add</IconButton
+                        on:click={() => push("/class/student")}
                     >
+                        groups
+                    </IconButton>
+                    <IconButton class="material-icons">delete</IconButton>
                 </div>
                 <Subtitle>생성일 : 2012/12/12</Subtitle>
                 <Subtitle>인원수 : 30</Subtitle>
