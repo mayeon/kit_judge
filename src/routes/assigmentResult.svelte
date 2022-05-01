@@ -1,5 +1,5 @@
 <script>
-    import Paper, { Title, Subtitle } from "@smui/paper";
+    import Paper, { Title } from "@smui/paper";
     import Button, { Label } from "@smui/button";
     import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
 
@@ -10,7 +10,6 @@
         { id: 4, score: 40 },
     ];
 </script>
-
 
 <Paper>
     <Title>제출 정보</Title>

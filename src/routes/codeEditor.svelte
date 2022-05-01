@@ -6,7 +6,7 @@
 
     import CodeMirror from "../component/codeMirror.svelte";
     import Button, { Group, Label } from "@smui/button";
-    import Paper, { Title, Subtitle, Content } from "@smui/paper";
+    import Card from "@smui/card";
 
     const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t\t\n\t}\n}`;
 
@@ -32,8 +32,8 @@
             </Button>
         {/each}
     </Group>
-    <Paper class="code-paper">
+    <Card class="code-paper">
         <CodeMirror class="editor" bind:editor {options} />
-    </Paper>
+    </Card>
     <Button variant="raised" class="code-submit-button button-shaped-round">제출</Button>
 </div>

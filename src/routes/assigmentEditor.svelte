@@ -105,13 +105,14 @@
     </main>
 
     <div class="assignment-editor-testcase">
-        <h1>테스트 케이스</h1>
+        <Title>테스트 케이스</Title>
         {#each testcases as testcase}
             <Testcase input={testcase.input} output={testcase.output}>
                 <IconButton class="material-icons" on:click={deleteCase(testcase)}
                     >delete</IconButton
                 >
             </Testcase>
+            <br />
         {/each}
 
         <div class="assignment-editor-testcase-input">
@@ -137,10 +138,15 @@
                 input$resizable={false}
                 on:keydown={handleKeydown}
             >
-                <HelperText slot="helper">테스트케이스의 출력을 넣어주세요.</HelperText>
+                <HelperText slot="helper"
+                    >테스트케이스의 출력을 넣어주세요.</HelperText
+                >
             </Textfield>
         </div>
-        <IconButton class="material-icons assignment-editor-testcase-add" on:click={addTestCase}>add</IconButton>
+
+        <IconButton class="material-icons assignment-editor-testcase-add" on:click={addTestCase}
+            >add</IconButton
+        >
     </div>
 </Paper>
 <br />
@@ -153,10 +159,6 @@
         padding: 1em;
         max-width: 240px;
         margin: 0 auto;
-    }
-
-    .card {
-        margin: 10px;
     }
 
     #editor {

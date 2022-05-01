@@ -41,24 +41,19 @@ a:visited {
         margin: 0;
     }
 
-    .code-paper {
-        display: block;
-        padding: 2px;
-    }
-
     .code-submit-button {
         position: relative;
         top: 0.5rem;
     }
 }
 
-.assignment-paper-title {
+.assignment-block-title {
     overflow: hidden; 
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.assignment-paper-explain {
+.assignment-block-explain {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

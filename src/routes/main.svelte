@@ -1,8 +1,29 @@
-<script>
+<script lang="ts">
+    import { push } from "svelte-spa-router";
+    import LayoutGrid, { Cell } from "@smui/layout-grid";
     import Block from "../component/block.svelte";
 </script>
 
-<!-- 메인 + block(설명, 과제 명 일정 글자 넘어가면 희미해지게 수정) -->
+<!-- <div class="container">
+    <h1>진행중인과제</h1>
+    <LayoutGrid>
+        {#each Array(10) as _unused, i}
+            <Cell span={2} align="top">
+                <Block
+                    name="연결리스트"
+                    class_name="자료구조"
+                    explain="ㄹㄴㅇㄹㄹㄴㅇ"
+                    d_day="D-20"
+                />
+            </Cell>
+        {/each}
+    </LayoutGrid>
+
+    <Block name="창의융합프로젝트2 교과목 프로젝트" class_name="qwqw" explain="ㅂㅂㅂㅂ ㅈㅈㅈㅈ ㄷㄷㄷㄷ ㄱㄱㄱㄱ ㅁㅁㅁㅁ ㄴㄴㄴㄴ ㅇㅇㅇㅇ ㅋㅋㅋㅋ ㅌㅌㅌㅌ ㅊㅊㅊㅊ ㅍㅍㅍㅍ ㅂㅂㅂㅂㅈㅈㅈㅈ ㄷㄷㄷㄷ"/>
+</div>
+
+<style>
+</style> -->
 
 <div class="container">
     <h1>진행중인과제</h1>
@@ -17,11 +38,10 @@
 </div>
 
 <style>
-
     .container {
         position: relative;
         top: 2rem;
-        max-width: calc((var(--element-assignment-paper-width) + 2rem) * 3);
+        max-width: 66rem;
         margin: 0, auto;
     }
 
@@ -33,5 +53,4 @@
         position: absolute;
         top: 5rem;
     }
-
 </style>

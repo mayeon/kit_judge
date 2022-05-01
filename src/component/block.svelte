@@ -19,22 +19,10 @@
             <!-- <div id="assignment">
                 <Title>과제이름:</Title>
             </div> -->
-    
+
             <div id="assignment-name">
-                <Title class="assignment-paper-title">{name}</Title>
+                <Title class="assignment-block-title">{name}</Title>
             </div>
-        </div>
-
-        <div id="star-button">
-            <IconButton
-            on:click={() => toggleClicked++}
-            toggle
-            bind:pressed={initialOff}
-            >
-
-            <Icon class="material-icons" on>star</Icon>
-            <Icon class="material-icons">star_border</Icon>
-        </IconButton>
         </div>
 
         <div id="sub-title">
@@ -43,7 +31,7 @@
 
         <Content>설명</Content>
         <div id="explain">
-            <Content class="assignment-paper-explain">{explain}</Content>
+            <Content class="assignment-block-explain">{explain}</Content>
         </div>
 
         <div id="d-day">
@@ -53,23 +41,13 @@
 </div>
 
 <style>
-    :root {
-        /* "과제이름"을 포함시켰을 경우*/
-        /* --element-assignment-paper-width: 25rem;   */
-        --element-assignment-paper-width: 20rem;
-    }
-
     .paper {
         display: inline-block;
         position: relative;
-        max-width: var(--element-assignment-paper-width);
-        width: var(--element-assignment-paper-width);
+        max-width: 20rem;
+        width: 20rem;
         margin: 10px;
-    }
-
-    #assignment {
-        display: inline-block;
-        margin: 0;
+        width: 100%;
     }
 
     #assignment-name {
@@ -77,16 +55,9 @@
         display: block;
         margin: 0;
         /* max-width: calc(var(--element-width) - 11.5rem); */
-        max-width: calc(var(--element-assignment-paper-width) - 5rem);
+        max-width: 17rem;
         max-height: 2rem;
         width: 100%;
-    }
-
-    #star-button {
-        display: inline-block;
-        position: absolute;
-        top: 1.2rem;
-        left: calc(var(--element-assignment-paper-width) - 4rem) ;
     }
 
     #sub-title, #explain, #d-day {
@@ -98,6 +69,4 @@
         height: 4.5rem;
         line-height: 1.5rem;
     }
-
-
 </style>
