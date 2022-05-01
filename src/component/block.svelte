@@ -47,7 +47,6 @@
         max-width: 20rem;
         width: 20rem;
         margin: 10px;
-        width: 100%;
     }
 
     #assignment-name {
