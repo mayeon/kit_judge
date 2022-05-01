@@ -24,15 +24,16 @@
 </script>
 
 <div>
-    <Group variant="outlined">
-        {#each codes as code}
-            <Button on:click={() => {}} variant="outlined">
-                <Label>{code.text}</Label>
-            </Button>
-        {/each}
-    </Group>
     <Paper>
+        <Group variant="outlined">
+            {#each codes as code}
+                <Button on:click={() => {}} variant="outlined">
+                    <Label>{code.text}</Label>
+                </Button>
+            {/each}
+        </Group>
         <CodeMirror bind:editor {options} class="editor" />
     </Paper>
+    <br />
     <Button variant="raised" class="button-shaped-round">제출</Button>
 </div>
