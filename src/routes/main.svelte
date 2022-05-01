@@ -4,27 +4,6 @@
     import Block from "../component/block.svelte";
 </script>
 
-<!-- <div class="container">
-    <h1>진행중인과제</h1>
-    <LayoutGrid>
-        {#each Array(10) as _unused, i}
-            <Cell span={2} align="top">
-                <Block
-                    name="연결리스트"
-                    class_name="자료구조"
-                    explain="ㄹㄴㅇㄹㄹㄴㅇ"
-                    d_day="D-20"
-                />
-            </Cell>
-        {/each}
-    </LayoutGrid>
-
-    <Block name="창의융합프로젝트2 교과목 프로젝트" class_name="qwqw" explain="ㅂㅂㅂㅂ ㅈㅈㅈㅈ ㄷㄷㄷㄷ ㄱㄱㄱㄱ ㅁㅁㅁㅁ ㄴㄴㄴㄴ ㅇㅇㅇㅇ ㅋㅋㅋㅋ ㅌㅌㅌㅌ ㅊㅊㅊㅊ ㅍㅍㅍㅍ ㅂㅂㅂㅂㅈㅈㅈㅈ ㄷㄷㄷㄷ"/>
-</div>
-
-<style>
-</style> -->
-
 <div class="container">
     <h1>진행중인과제</h1>
 

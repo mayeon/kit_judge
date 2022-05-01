@@ -160,7 +160,7 @@
         max-width: 240px;
         margin: 0 auto;
     }
-
+  
     #editor {
         height: 350px;
     }
