@@ -8,7 +8,8 @@
     import Button, { Group, Label } from "@smui/button";
     import Paper, { Title, Subtitle, Content } from "@smui/paper";
 
-    const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t}\n}`;
+    const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t\t\n\t}\n}`;
+
     const options = {
         matchBrackets: true,
         autoCloseBrackets: true,
@@ -19,20 +20,20 @@
         theme: "dracula",
         indentUnit: 4,
     };
-    let codes = [{ id: 1, text: `Main` }];
+    let codes = [{ id: 1, text: `Main` }, {id: 0, text: '+'}];
     let editor;
 </script>
 
-<div>
+<div class="code-container">
     <Group variant="outlined">
         {#each codes as code}
-            <Button on:click={() => {}} variant="outlined">
+            <Button class="code-group" on:click={() => {}} variant="outlined">
                 <Label>{code.text}</Label>
             </Button>
         {/each}
     </Group>
-    <Paper>
-        <CodeMirror bind:editor {options} class="editor" />
+    <Paper class="code-paper">
+        <CodeMirror class="editor" bind:editor {options} />
     </Paper>
-    <Button variant="raised" class="button-shaped-round">제출</Button>
+    <Button variant="raised" class="code-submit-button button-shaped-round">제출</Button>
 </div>
