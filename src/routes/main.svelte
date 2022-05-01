@@ -9,22 +9,19 @@
 
     <div class="assignments">
         <Block name="연결리스트" />
-        <Block name="ㅂㅂ" class_name="qwqw" explain="ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"/>
-        <Block name="ㅂㅂㅂ" />
-
-        <Block name="ㅂㅂㅂㅂㅂㅂㅂ" />
-        <Block name="ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ" />
-        <Block name="ㅂㅂㅂㅂㅂㅂㅂㅂㅂ" />
+        <Block name="ㅂㅂ" explain="ㅂㅂㅂㅂ ㅈㅈㅈㅈ ㄷㄷㄷㄷ ㄱㄱㄱㄱ ㅁㅁㅁㅁ ㄴㄴㄴ ㅂㅂㅂㅂㅈㅈㅈㅈ ㄷㄷㄷㄷ" />
+        <Block name="창의융합프로젝트2 교과목 프로젝트" class_name="qwqw" explain="ㅂㅂㅂㅂ ㅈㅈㅈㅈ ㄷㄷㄷㄷ ㄱㄱㄱㄱ ㅁㅁㅁㅁ ㄴㄴㄴㄴ ㅇㅇㅇㅇ ㅋㅋㅋㅋ ㅌㅌㅌㅌ ㅊㅊㅊㅊ ㅍㅍㅍㅍ ㅂㅂㅂㅂㅈㅈㅈㅈ ㄷㄷㄷㄷ"/>
         
         <Block is_star="true" />
     </div>
 </div>
 
 <style>
+
     .container {
         position: relative;
         top: 2rem;
-        max-width: calc((var(--element-assignment-paper-width) + 1.7rem) * 3);
+        max-width: calc((var(--element-assignment-paper-width) + 2rem) * 3);
         margin: 0, auto;
     }
 
@@ -34,7 +31,7 @@
 
     .assignments {
         position: absolute;
-        top: 5rem
+        top: 5rem;
     }
 
 </style>

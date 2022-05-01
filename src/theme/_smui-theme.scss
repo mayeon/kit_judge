@@ -29,3 +29,75 @@ a {
 a:visited {
     color: color.scale(#40b3ff, $lightness: -35%);
 }
+
+.code-container {
+    max-width: 80rem;
+    width: 100%;
+    position: relative;
+    margin: auto;
+    top: 2rem;
+
+    .code-group {
+        margin: 0;
+    }
+
+    .code-paper {
+        display: block;
+        padding: 2px;
+    }
+
+    .code-submit-button {
+        position: relative;
+        top: 0.5rem;
+    }
+}
+
+.assignment-paper-title {
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.assignment-paper-explain {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+}
+
+
+.assignment-editor-paper {
+    .assignment-editor-title {
+        padding: 0 16px;
+        position: relative;
+        left: 1rem;
+    }
+
+    .assignment-editor-start-date {
+        padding: 16px;
+        display: inline-block;
+    }
+
+    .assignment-editor-end-date {
+        padding: 16px;
+        display: inline-block;
+    }
+
+    .assignment-editor-testcase {
+        padding: 16px;
+
+        .assignment-editor-testcase-input {
+            display: inline-block;
+        }
+
+        .assignment-editor-testcase-output {
+            display: inline-block;
+        }
+
+        .assignment-editor-testcase-add {
+            display: block;
+        }
+    }
+}
