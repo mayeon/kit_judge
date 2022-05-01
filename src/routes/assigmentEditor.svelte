@@ -86,46 +86,69 @@
             <Option value={class_name}>{class_name}</Option>
         {/each}
     </Select>
-    <h1>시작일</h1>
-    <DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
-    <h1>종료일</h1>
-    <DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
+    <br />
+    <br />
+    <div class="case-box">
+        <div>
+            <Title>시작일</Title>
+            <DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
+        </div>
+        <div>
+            <Title>종료일</Title>
+            <DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
+        </div>
+    </div>
+
     <main>
         <div id="editor" />
     </main>
 
-    <h1>테스트 케이스</h1>
+    <Title>테스트 케이스</Title>
     {#each testcases as testcase}
         <Testcase input={testcase.input} output={testcase.output}>
             <IconButton class="material-icons" on:click={deleteCase(testcase)}
                 >delete</IconButton
             >
         </Testcase>
+        <br />
     {/each}
 
-    <Textfield
-        textarea
-        bind:value={testcaseInput}
-        label="입력"
-        input$rows={4}
-        input$cols={24}
-        input$resizable={false}
-    >
-        <HelperText slot="helper">테스트케이스의 입력을 넣어주세요.</HelperText>
-    </Textfield>
+    <div class="case-box">
+        <div>
+            <Textfield
+                textarea
+                bind:value={testcaseInput}
+                label="입력"
+                input$rows={4}
+                input$cols={24}
+                input$resizable={false}
+            >
+                <HelperText slot="helper"
+                    >테스트케이스의 입력을 넣어주세요.</HelperText
+                >
+            </Textfield>
+        </div>
+        <br />
+        <div>
+            <Textfield
+                textarea
+                bind:value={testcaseOutput}
+                label="출력"
+                input$rows={4}
+                input$cols={24}
+                input$resizable={false}
+                on:keydown={handleKeydown}
+            >
+                <HelperText slot="helper"
+                    >테스트케이스의 출력을 넣어주세요.</HelperText
+                >
+            </Textfield>
+        </div>
 
-    <Textfield
-        textarea
-        bind:value={testcaseOutput}
-        label="출력"
-        input$rows={4}
-        input$cols={24}
-        input$resizable={false}
-        on:keydown={handleKeydown}
-    >
-        <HelperText slot="helper">테스트케이스의 출력을 넣어주세요.</HelperText>
-    </Textfield>
-    <IconButton class="material-icons" on:click={addTestCase}>add</IconButton>
+        <IconButton class="material-icons" on:click={addTestCase}
+            >add</IconButton
+        >
+    </div>
 </Paper>
 <br />
 
@@ -139,8 +162,9 @@
         margin: 0 auto;
     }
 
-    .card {
-        margin: 10px;
+    .case-box {
+        display: flex;
+        padding-right: 1em;
     }
 
     #editor {
