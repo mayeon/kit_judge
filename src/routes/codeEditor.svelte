@@ -6,7 +6,6 @@
 
     import CodeMirror from "../component/codeMirror.svelte";
     import Button, { Group, Label } from "@smui/button";
-    import Paper, { Title, Subtitle, Content } from "@smui/paper";
     import Card from "@smui/card";
 
     const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t}\n}`;
