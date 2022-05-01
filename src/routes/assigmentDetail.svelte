@@ -19,8 +19,10 @@
         <Subtitle>기간 : 2020/12/12 ~ 2102/21/12</Subtitle>
         <Content>설명</Content>
 
+        <Subtitle>테스트 케이스</Subtitle>
         {#each testcases as testcase}
             <Testcase input={testcase.input} output={testcase.output} />
+            <br />
         {/each}
     </Paper>
 </div>
