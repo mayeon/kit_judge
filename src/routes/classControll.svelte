@@ -7,7 +7,7 @@
 
 <LayoutGrid>
     {#each Array(10) as _unused, i}
-        <Cell>
+        <Cell span={2}>
             <Paper>
                 <div>
                     <Title>과목{i + 1}</Title>
@@ -24,7 +24,7 @@
             </Paper>
         </Cell>
     {/each}
-    <Cell>
+    <Cell span={1}>
         <Paper class="add-paper">
             <IconButton class="material-icons">add</IconButton>
         </Paper>
