@@ -25,8 +25,18 @@
         </Cell>
     {/each}
     <Cell>
-        <Paper>
+        <Paper class="add-paper">
             <IconButton class="material-icons">add</IconButton>
         </Paper>
     </Cell>
 </LayoutGrid>
+
+<style>
+    :global(.add-paper) {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        height: 100%;
+    }
+</style>
