@@ -76,45 +76,46 @@
 </svelte:head>
 
 <!-- <svelte:window on:keydown={handleKeydown}/> -->
-<Paper>
-    <Textfield bind:value={title} label="제목">
-        <HelperText slot="helper">Helper Text</HelperText>
-    </Textfield>
-    <Select bind:value={className} label="과목명">
-        <Option value="" />
-        {#each classes as class_name}
-            <Option value={class_name}>{class_name}</Option>
-        {/each}
-    </Select>
-    <br />
-    <br />
-    <div class="case-box">
-        <div>
-            <Title>시작일</Title>
-            <DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
-        </div>
-        <div>
-            <Title>종료일</Title>
-            <DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
-        </div>
+<Paper class="assignment-editor-paper">
+    <div class="assignment-editor-title"> 
+        <Select bind:value={className} label="과목명">
+            <Option value="" />
+            {#each classes as class_name}
+                <Option value={class_name}>{class_name}</Option>
+            {/each}
+        </Select>
+
+        <Textfield bind:value={title} label="제목">
+            <HelperText slot="helper">Helper Text</HelperText>
+        </Textfield>
+    </div>
+
+    <div class="assignment-editor-start-date">
+        <h1>시작일</h1>
+        <DateInput bind:value={start} format="yyyy-MM-dd HH:mm" />
+    </div>
+    
+    <div class="assignment-editor-end-date">
+        <h1>종료일</h1>
+        <DateInput bind:value={end} format="yyyy-MM-dd HH:mm" />
     </div>
 
     <main>
         <div id="editor" />
     </main>
 
-    <Title>테스트 케이스</Title>
-    {#each testcases as testcase}
-        <Testcase input={testcase.input} output={testcase.output}>
-            <IconButton class="material-icons" on:click={deleteCase(testcase)}
-                >delete</IconButton
-            >
-        </Testcase>
-        <br />
-    {/each}
+    <div class="assignment-editor-testcase">
+        <Title>테스트 케이스</Title>
+        {#each testcases as testcase}
+            <Testcase input={testcase.input} output={testcase.output}>
+                <IconButton class="material-icons" on:click={deleteCase(testcase)}
+                    >delete</IconButton
+                >
+            </Testcase>
+            <br />
+        {/each}
 
-    <div class="case-box">
-        <div>
+        <div class="assignment-editor-testcase-input">
             <Textfield
                 textarea
                 bind:value={testcaseInput}
@@ -123,13 +124,11 @@
                 input$cols={24}
                 input$resizable={false}
             >
-                <HelperText slot="helper"
-                    >테스트케이스의 입력을 넣어주세요.</HelperText
-                >
+                <HelperText slot="helper">테스트케이스의 입력을 넣어주세요.</HelperText>
             </Textfield>
         </div>
-        <br />
-        <div>
+
+        <div class="assignment-editor-testcase-output">
             <Textfield
                 textarea
                 bind:value={testcaseOutput}
@@ -145,7 +144,7 @@
             </Textfield>
         </div>
 
-        <IconButton class="material-icons" on:click={addTestCase}
+        <IconButton class="material-icons assignment-editor-testcase-add" on:click={addTestCase}
             >add</IconButton
         >
     </div>
@@ -161,12 +160,7 @@
         max-width: 240px;
         margin: 0 auto;
     }
-
-    .case-box {
-        display: flex;
-        padding-right: 1em;
-    }
-
+  
     #editor {
         height: 350px;
     }

@@ -21,7 +21,7 @@
             </div> -->
 
             <div id="assignment-name">
-                <Title>{name}</Title>
+                <Title class="assignment-block-title">{name}</Title>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
 
         <Content>설명</Content>
         <div id="explain">
-            <Content>{explain}</Content>
+            <Content class="assignment-block-explain">{explain}</Content>
         </div>
 
         <div id="d-day">
@@ -41,35 +41,31 @@
 </div>
 
 <style>
-    :root {
-        /* "과제이름"을 포함시켰을 경우*/
-        /* --element-assignment-paper-width: 25rem;   */
-        --element-assignment-paper-width: 20rem;
-    }
-
     .paper {
         display: inline-block;
         position: relative;
+        max-width: 20rem;
+        width: 20rem;
         margin: 10px;
-        width: 100%;
     }
 
     #assignment-name {
         left: 7.5rem;
-        display: inline-block;
+        display: block;
         margin: 0;
         /* max-width: calc(var(--element-width) - 11.5rem); */
-        max-width: calc(var(--element-assignment-paper-width) - 5rem);
+        max-width: 17rem;
+        max-height: 2rem;
+        width: 100%;
     }
 
-    #sub-title,
-    #explain,
-    #d-day {
+    #sub-title, #explain, #d-day {
         margin-top: 0rem;
     }
 
     #explain {
-        max-height: 5rem;
-        height: 5rem;
+        max-height: 4.5rem;
+        height: 4.5rem;
+        line-height: 1.5rem;
     }
 </style>
