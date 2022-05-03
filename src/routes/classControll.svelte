@@ -26,7 +26,10 @@
     {/each}
     <Cell span={1}>
         <Paper class="add-paper">
-            <IconButton class="material-icons">add</IconButton>
+            <IconButton
+                class="material-icons"
+                on:click={() => push("/class/new")}>add</IconButton
+            >
         </Paper>
     </Cell>
 </LayoutGrid>
