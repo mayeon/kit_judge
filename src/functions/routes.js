@@ -9,7 +9,7 @@ import AssigmentDetail from "../routes/assigmentDetail.svelte";
 import AssigmentResult from "../routes/assigmentResult.svelte";
 
 import ClassNew from "../routes/classNew.svelte";
-import ClassJoin from "../routes/ClassJoin.svelte";
+import ClassJoin from "../routes/classJoin.svelte";
 import ClassControll from "../routes/classControll.svelte";
 import ClassStudentControll from "../routes/classStudentControll.svelte";
 
