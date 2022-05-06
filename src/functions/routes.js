@@ -2,7 +2,7 @@ import Login from "../routes/login.svelte";
 import Main from "../routes/main.svelte";
 import Test from "../routes/test.svelte";
 import UserRegister from "../routes/userRegister.svelte";
-import UserDetail from "../routes/UserDetail.svelte";
+import UserDetail from "../routes/userDetail.svelte";
 
 import AssigmentWrite from "../routes/assigmentEditor.svelte";
 import AssigmentDetail from "../routes/assigmentDetail.svelte";
