@@ -2,6 +2,7 @@
     import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
     import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
+    import IconButton, { Icon } from "@smui/icon-button";
 
     // 로그인 여부 (임시)
     let user = { loggedIn: true };
@@ -20,6 +21,15 @@
             </Section>
             <Section>
                 <a href="/class" use:link> 강의실 </a>
+            </Section>
+            <Section>
+                <IconButton
+                    class="material-icons"
+                    on:click={() => push("/user")}
+                    ><span class="material-symbols-outlined">
+                        account_circle
+                    </span></IconButton
+                >
             </Section>
         </Row>
     </TopAppBar>
