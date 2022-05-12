@@ -3,6 +3,7 @@
 
     export let input;
     export let output;
+    export let score;
 </script>
 
 <Paper class="testcase-paper">
@@ -16,6 +17,12 @@
         <Subtitle>출력</Subtitle>
         <Content>
             {output}
+        </Content>
+    </div>
+    <div>
+        <Subtitle>점수</Subtitle>
+        <Content>
+            {score}
         </Content>
     </div>
     <slot />

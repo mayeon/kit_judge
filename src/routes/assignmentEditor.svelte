@@ -43,9 +43,11 @@
     let end = new Date();
 
     let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
+
     let testcases = [];
     let testcaseInput = "";
     let testcaseOutput = "";
+    let testcaseScore ="";
 
     function handleKeydown(event) {
         console.log(event.key);
@@ -60,10 +62,12 @@
     function addTestCase() {
         testcases = [
             ...testcases,
-            { input: testcaseInput, output: testcaseOutput },
+            { input: testcaseInput, output: testcaseOutput, score: testcaseScore},
         ];
         testcaseInput = "";
         testcaseOutput = "";
+        testcaseScore = "";
+
     }
 
     function deleteCase(testcase) {
@@ -77,15 +81,15 @@
 
 <!-- <svelte:window on:keydown={handleKeydown}/> -->
 <Paper class="assignment-editor-paper">
-    <div class="assignment-editor-title"> 
-        <Select bind:value={className} label="과목명">
+    <div class="assignment-editor-subject-title"> 
+        <Select bind:value={className} label="과목명" class="assignment-editor-subject">
             <Option value="" />
             {#each classes as class_name}
                 <Option value={class_name}>{class_name}</Option>
             {/each}
         </Select>
 
-        <Textfield bind:value={title} label="제목">
+        <Textfield bind:value={title} label="제목" class="assignment-editor-title">
             <HelperText slot="helper">Helper Text</HelperText>
         </Textfield>
     </div>
@@ -106,8 +110,9 @@
 
     <div class="assignment-editor-testcase">
         <Title>테스트 케이스</Title>
+
         {#each testcases as testcase}
-            <Testcase input={testcase.input} output={testcase.output}>
+            <Testcase input={testcase.input} output={testcase.output} score={testcase.score}>
                 <IconButton class="material-icons" on:click={deleteCase(testcase)}
                     >delete</IconButton
                 >
@@ -136,10 +141,25 @@
                 input$rows={4}
                 input$cols={24}
                 input$resizable={false}
-                on:keydown={handleKeydown}
             >
                 <HelperText slot="helper"
                     >테스트케이스의 출력을 넣어주세요.</HelperText
+                >
+            </Textfield>
+        </div>
+
+        <div class="assignment-editor-testcase-score">
+            <Textfield
+                textarea
+                bind:value={testcaseScore}
+                label="점수"
+                input$rows={4}
+                input$cols={7}
+                input$resizable={false}
+                on:keydown={handleKeydown}
+            >
+                <HelperText slot="helper"
+                    >테스트케이스의 점수를 넣어주세요.</HelperText
                 >
             </Textfield>
         </div>

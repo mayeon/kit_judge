@@ -7,8 +7,8 @@
     const elevation = 10;
 
     let testcases = [
-        { input: "12321", output: "12321" },
-        { input: "12321", output: "12321" },
+        { input: "12321", output: "12321", score: "30" },
+        { input: "12321", output: "12321", score: "40" },
     ];
 </script>
 
@@ -21,7 +21,7 @@
 
         <Subtitle>테스트 케이스</Subtitle>
         {#each testcases as testcase}
-            <Testcase input={testcase.input} output={testcase.output} />
+            <Testcase input={testcase.input} output={testcase.output} score={testcase.score}/>
             <br />
         {/each}
     </Paper>
