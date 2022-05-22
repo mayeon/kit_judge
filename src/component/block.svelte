@@ -46,7 +46,7 @@
         position: relative;
         max-width: 20rem;
         width: 20rem;
-        margin: 10px;
+        margin: 1rem;
     }
 
     #assignment-name {
@@ -67,5 +67,6 @@
         max-height: 4.5rem;
         height: 4.5rem;
         line-height: 1.5rem;
+        margin-bottom: 1rem;
     }
 </style>

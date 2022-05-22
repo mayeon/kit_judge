@@ -4,32 +4,19 @@
     import Block from "../component/block.svelte";
 </script>
 
-<div class="container">
+<div class="main-assignments-container">
     <h1>진행중인과제</h1>
 
-    <div class="assignments">
+    <div class="main-assignments">
         <Block name="연결리스트" />
-        <Block name="ㅂㅂ" explain="ㅂㅂㅂㅂ ㅈㅈㅈㅈ ㄷㄷㄷㄷ ㄱㄱㄱㄱ ㅁㅁㅁㅁ ㄴㄴㄴ ㅂㅂㅂㅂㅈㅈㅈㅈ ㄷㄷㄷㄷ" />
-        <Block name="창의융합프로젝트2 교과목 프로젝트" class_name="qwqw" explain="ㅂㅂㅂㅂ ㅈㅈㅈㅈ ㄷㄷㄷㄷ ㄱㄱㄱㄱ ㅁㅁㅁㅁ ㄴㄴㄴㄴ ㅇㅇㅇㅇ ㅋㅋㅋㅋ ㅌㅌㅌㅌ ㅊㅊㅊㅊ ㅍㅍㅍㅍ ㅂㅂㅂㅂㅈㅈㅈㅈ ㄷㄷㄷㄷ"/>
+        <Block name="트리" class_name="자료구조" explain="설명"/>
+        <Block name="큐" class_name="자료구조" explain="설명"/>
+        <Block name="창의융합프로젝트2 교과목 프로젝트" class_name="창의융합프로젝트2" explain="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id nisl tristique turpis viverra ultricies. Quisque nibh diam, venenatis a semper vestibulum, aliquam in dui."/>
         
         <Block is_star="true" />
     </div>
 </div>
 
 <style>
-    .container {
-        position: relative;
-        top: 2rem;
-        max-width: 66rem;
-        margin: 0, auto;
-    }
 
-    .container h1 {
-        padding-left: 1rem;
-    }
-
-    .assignments {
-        position: absolute;
-        top: 5rem;
-    }
 </style>

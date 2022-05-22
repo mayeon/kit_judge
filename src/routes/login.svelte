@@ -100,10 +100,6 @@
         color: red;
     }
 
-    button {
-        background-color: white;
-    }
-
     #login-form input {
         margin-bottom: -1px;
     }

@@ -4,9 +4,9 @@ import Test from "../routes/test.svelte";
 import UserRegister from "../routes/userRegister.svelte";
 import UserDetail from "../routes/userDetail.svelte";
 
-import AssigmentWrite from "../routes/assigmentEditor.svelte";
-import AssigmentDetail from "../routes/assigmentDetail.svelte";
-import AssigmentResult from "../routes/assigmentResult.svelte";
+import AssignmentWrite from "../routes/assignmentEditor.svelte";
+import AssignmentDetail from "../routes/assignmentDetail.svelte";
+import AssignmentResult from "../routes/assignmentResult.svelte";
 
 import ClassNew from "../routes/classNew.svelte";
 import ClassJoin from "../routes/classJoin.svelte";
@@ -26,9 +26,9 @@ const routes = {
     "/main": Main,
     "/code": CodeWrite,
 
-    "/assigment": AssigmentDetail,
-    "/assigment/new": AssigmentWrite,
-    "/assigment/submit": AssigmentResult,
+    "/assignment": AssignmentDetail,
+    "/assignment/new": AssignmentWrite,
+    "/assignment/submit": AssignmentResult,
 
     "/class": ClassControll,
     "/class/new": ClassNew,

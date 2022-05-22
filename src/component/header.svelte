@@ -19,12 +19,14 @@
                     >금오공대 과제 채점 시스템</Title
                 >
             </Section>
+
             <Section>
                 <a href="/class" use:link> 강의실 </a>
             </Section>
+
             <Section>
                 <IconButton
-                    class="material-icons"
+                    class="material-icons user-info-btn"
                     on:click={() => push("/user")}
                     ><span class="material-symbols-outlined">
                         account_circle

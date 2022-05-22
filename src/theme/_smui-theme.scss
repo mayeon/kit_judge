@@ -64,10 +64,13 @@ a:visited {
 
 
 .assignment-editor-paper {
-    .assignment-editor-title {
+    .assignment-editor-subject-title {
         padding: 0 16px;
         position: relative;
-        left: 1rem;
+
+        .assignment-editor-title {
+            margin-left: 1rem;
+        }
     }
 
     .assignment-editor-start-date {
@@ -91,8 +94,50 @@ a:visited {
             display: inline-block;
         }
 
+        .assignment-editor-testcase-score {
+            display: inline-block;
+        }
+
         .assignment-editor-testcase-add {
             display: block;
         }
     }
 }
+
+.user-info-btn {
+    margin: 0;
+}
+
+
+.main-assignments-container {
+    position: relative;
+    top: 2rem;
+    max-width: 92rem;
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+        padding-left: 1rem;
+        font-size: 40px;
+        text-align: left;
+    }
+
+    .main-assignments {
+        text-align: left;
+    }
+}
+
+// .main-assignments-container {
+//     position: relative;
+//     top: 2rem;
+//     display: inline-block;
+//     max-width: 69rem; // 72rem;
+//     margin: 0 auto;
+//     text-align: center;
+    
+//     h1 {
+//         padding-left: 1rem;
+//         font-size: 40px;
+//     }
+
+// }
