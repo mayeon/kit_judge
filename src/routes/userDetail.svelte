@@ -4,7 +4,7 @@
     const elevation = 10;
 
     let student_id = "20202020";
-    let user_name = "이름";
+    let user_name = "이름이름";
     let user_email = "이메일@email.com";
 </script>
 

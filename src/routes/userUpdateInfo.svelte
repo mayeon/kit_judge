@@ -1,5 +1,6 @@
 <script lang="ts">
     import Paper, { Title, Subtitle } from "@smui/paper";
+    import Textfield from "@smui/textfield";
     import Menu from "../component/userInfoMenu.svelte"
     const elevation = 10;
 </script>
