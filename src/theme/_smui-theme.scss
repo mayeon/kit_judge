@@ -141,3 +141,54 @@ a:visited {
 //     }
 
 // }
+
+.user-info-menu {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 9.5rem;
+    width: 100%;
+
+    .user-info-btn, .user-update-btn, .user-leave-btn{
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+        height: 24px;
+        text-decoration-line: none;
+    }
+}
+
+.user-info-container{
+    position: relative;
+    margin: 0 auto;
+    max-width: 40rem;
+    width: 100%;
+
+    .user-info-h1 {
+        font-size: 36px;
+    }
+    
+    .user-info {
+        display: inline-block;
+        vertical-align: top;
+        max-width: 30rem;
+        width: 100%
+    }
+}
+
+.user-update-container{
+    position: relative;
+    margin: 0 auto;
+    max-width: 40rem;
+    width: 100%;
+
+    .user-update-h1 {
+        font-size: 36px;
+    }
+    
+    .user-update {
+        display: inline-block;
+        vertical-align: top;
+        max-width: 30rem;
+        width: 100%
+    }
+}
