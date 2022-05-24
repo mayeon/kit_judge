@@ -8,10 +8,9 @@
     let user_email = "이메일@email.com";
 </script>
 
-<!-- 이름, 아이디, 비밀번호 변경 -->
 <div class="user-info-container">
     <h1 class="user-info-h1"> 회원 정보 </h1>
-    <Menu> </Menu>
+    <Menu />
 
     <Paper {elevation} class="user-info">
         <Title class="user-info-user-name"> {user_name}</Title>

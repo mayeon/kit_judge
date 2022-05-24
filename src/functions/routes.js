@@ -3,7 +3,8 @@ import Main from "../routes/main.svelte";
 import Test from "../routes/test.svelte";
 import UserRegister from "../routes/userRegister.svelte";
 import UserDetail from "../routes/userDetail.svelte";
-import UserUpdate from "../routes/UserUpdate.svelte";
+import UserUpdateInfo from "../routes/UserUpdateInfo.svelte";
+import UserUpdatePw from "../routes/UserUpdatePw.svelte";
 
 import AssignmentWrite from "../routes/assignmentEditor.svelte";
 import AssignmentDetail from "../routes/assignmentDetail.svelte";
@@ -24,7 +25,8 @@ const routes = {
     "/": Login,
     "/login": Login,
     "/user": UserDetail,
-    "/user/update": UserUpdate,
+    "/user/update/info": UserUpdateInfo,
+    "/user/update/pw": UserUpdatePw,
     "/user/new": UserRegister,
 
     "/main": Main,

@@ -142,13 +142,13 @@ a:visited {
 
 // }
 
-.user-info-menu {
+.user-info-menu-container {
     display: inline-block;
     vertical-align: top;
     max-width: 9.5rem;
     width: 100%;
 
-    .user-info-btn, .user-update-btn, .user-leave-btn{
+    .user-info-btn, .user-update-info-btn, .user-update-pw-btn,.user-leave-btn{
         font-size: 16px;
         padding: 0;
         margin: 0;
@@ -175,17 +175,35 @@ a:visited {
     }
 }
 
-.user-update-container{
+.user-update-info-container{
     position: relative;
     margin: 0 auto;
     max-width: 40rem;
     width: 100%;
 
-    .user-update-h1 {
+    .user-update-info-h1 {
         font-size: 36px;
     }
     
-    .user-update {
+    .user-update-info {
+        display: inline-block;
+        vertical-align: top;
+        max-width: 30rem;
+        width: 100%
+    }
+}
+
+.user-update-pw-container{
+    position: relative;
+    margin: 0 auto;
+    max-width: 40rem;
+    width: 100%;
+
+    .user-update-pw-h1 {
+        font-size: 36px;
+    }
+    
+    .user-update-pw {
         display: inline-block;
         vertical-align: top;
         max-width: 30rem;
