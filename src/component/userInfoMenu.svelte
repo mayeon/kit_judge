@@ -26,18 +26,21 @@
     }
 </script>
 
-<Paper {elevation} class="user-info-menu">
-    <div class="user-info-menu-btns">
-        <Button href="/#/user" class="user-info-btn">
-            <Label>회원 정보</Label>
-        </Button>
+<!-- 이름, 아이디, 비밀번호 변경 -->
+<Paper {elevation} class="user-info-menu-container">
+    <Button href="/#/user" class="user-info-btn">
+        <Label>회원 정보</Label>
+    </Button>
         
-        <Button href="/#/user/update" class="user-update-btn">
-            <Label>회원 정보 변경</Label>
-        </Button>
+    <Button href="/#/user/update/info" class="user-update-info-btn">
+        <Label>회원 정보 변경</Label>
+    </Button>
 
-        <Button on:click={checkUserLeave} class="user-leave-btn">
-            <Label>회원 탈퇴</Label>
-        </Button>
-    </div>
+    <Button href="/#/user/update/pw" class="user-update-pw-btn">
+        <Label>비밀번호 변경</Label>
+    </Button>
+
+    <Button on:click={checkUserLeave} class="user-leave-btn">
+        <Label>회원 탈퇴</Label>
+    </Button>
 </Paper>
