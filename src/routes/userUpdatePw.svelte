@@ -29,7 +29,7 @@
     <Paper {elevation} class="user-update-pw">
         <div class="user-update-newpw">
             <Textfield 
-                password
+                type="password"
                 bind:value={newPw} 
                 label="새 비밀번호"
                 input$resizable={false}
@@ -39,7 +39,7 @@
 
         <div class="user-update-newpw">
             <Textfield 
-                password
+                type="password"
                 bind:value={newPwCheck} 
                 label="새 비밀번호 확인"
                 input$resizable={false}
