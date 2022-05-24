@@ -12,21 +12,17 @@
         }
     }
 
-    const tempUserPw = "123";
 
+    const tempUserPw = "123";
     function checkPw() {
         let inputPw = prompt('현재 비밀번호를 입력해주세요', '');
 
         if (inputPw == tempUserPw) {
             alert("탈퇴되었습니다.");
-            moveLoginPage();
+            location.href="/#/login"; // 로그인 페이지로 이동
         } else {
             alert("비밀번호가 일치하지 않습니다.");
         }
-    }
-
-    function moveLoginPage() {
-        location.href="/#/";
     }
 </script>
 
