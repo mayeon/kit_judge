@@ -3,12 +3,19 @@
     import Textfield from "@smui/textfield";
     import Menu from "../component/userInfoMenu.svelte"
     import Button, { Label } from "@smui/button";
+    import {
+        useForm,
+        validators,
+        required,
+    } from "svelte-use-form";
+    const form = useForm();
     const elevation = 10;
 
     let newPw = "";
     let newPwCheck = "";
 
     function checkPws() {
+        console.log(form.valid)
         if (newPw == "" || newPwCheck == "") {
             alert("새 비밀번호를 입력하지 않았습니다.");
         } else {
@@ -27,35 +34,17 @@
     <Menu />
 
     <Paper {elevation} class="user-update-pw">
-        <div class="user-update-newpw">
-            <Textfield 
-                type="password"
-                bind:value={newPw} 
-                label="새 비밀번호"
-                input$resizable={false}
-            >
-            </Textfield>
-        </div>
+        <form use:form id="changePw">
+            <div class="user-update-newpw">
+                <input type="password" name="newPw" placeholder="새 비밀번호" bind:value={newPw} use:validators={[required]}/>
+            </div>
 
-        <div class="user-update-newpw">
-            <Textfield 
-                type="password"
-                bind:value={newPwCheck} 
-                label="새 비밀번호 확인"
-                input$resizable={false}
-            >
-            </Textfield>
-        </div>
+            <div class="user-update-newpw">
+                <input type="password" name="checkNewPw" placeholder="새 비밀번호 확인" bind:value={newPwCheck} use:validators={[required]}/>
+            </div>
+        </form>
 
-        <!-- <button
-            type="button"
-            class="btn btn-outline-secondary user-update-pw-btn"
-            on:click={checkPws}
-        >
-            <Label>변경</Label>
-        </button> -->
-
-        <Button on:click={checkPws} class="user-update-pw-btn" variant="outlined">
+        <Button form="changePw" on:click={checkPws} class="user-update-pw-btn" disabled={!$form.valid} variant="outlined">
             <Label>변경</Label>
         </Button>
     </Paper>

@@ -189,7 +189,11 @@ a:visited {
         display: inline-block;
         vertical-align: top;
         max-width: 30rem;
-        width: 100%
+        width: 100%;
+
+        .user-update-info-btn {
+            margin-top: 5px;
+        }
     }
 }
 
