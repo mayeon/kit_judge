@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Textfield from "@smui/textfield";
     import Menu from "../component/userInfoMenu.svelte"
