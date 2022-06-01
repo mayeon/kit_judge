@@ -47,4 +47,4 @@
     <Button class="test-button" on:click={uploadText}>전송</Button>
 </div> 
 
-<img id="file-preview" /> 
+<img id="file-preview" alt=""/> 
