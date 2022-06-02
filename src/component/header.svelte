@@ -25,6 +25,7 @@
             </Section>
 
             <Section>
+            {#if user.loggedIn}
                 <IconButton
                     class="material-icons user-info-btn"
                     on:click={() => push("/user")}
@@ -32,6 +33,10 @@
                         account_circle
                     </span></IconButton
                 >
+                <Title on:click={() => push("/")}
+                    >로그아웃</Title
+                >
+            {/if}
             </Section>
         </Row>
     </TopAppBar>
