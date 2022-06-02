@@ -3,8 +3,8 @@ import Main from "../routes/main.svelte";
 import Test from "../routes/test.svelte";
 import UserRegister from "../routes/userRegister.svelte";
 import UserDetail from "../routes/userDetail.svelte";
-import UserUpdateInfo from "../routes/UserUpdateInfo.svelte";
-import UserUpdatePw from "../routes/UserUpdatePw.svelte";
+import UserUpdateInfo from "../routes/userUpdateInfo.svelte";
+import UserUpdatePw from "../routes/userUpdatePw.svelte";
 
 import AssignmentWrite from "../routes/assignmentEditor.svelte";
 import AssignmentDetail from "../routes/assignmentDetail.svelte";
