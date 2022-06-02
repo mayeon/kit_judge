@@ -16,6 +16,7 @@ import ClassControll from "../routes/classControll.svelte";
 import ClassStudentControll from "../routes/classStudentControll.svelte";
 
 import CodeWrite from "../routes/codeEditor.svelte";
+import CodeAttach from "../routes/codeAttach.svelte";
 
 import Links from "../routes/pageLinks.svelte";
 
@@ -31,6 +32,7 @@ const routes = {
 
     "/main": Main,
     "/code": CodeWrite,
+    "/codeAttach": CodeAttach,
 
     "/assignment": AssignmentDetail,
     "/assignment/new": AssignmentWrite,
