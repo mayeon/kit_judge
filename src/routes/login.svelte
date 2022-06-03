@@ -22,19 +22,17 @@
                 "password": userPw
             };
 
-            await 
-                axiosInstance.post("/auth/login", JSON.stringify(data))
-                .then(res => {
-                    // for debug
-                    console.log(res.data);
-                    console.log(axiosInstance.defaults.headers.common["Authorization"]);
-
-                    axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + res.data.access_token;
-                }).catch(err => {
-                    console.log("login requset fail : " + err);
-                }).finally(()=>{
-                    console.log("login request end")
-                });
+            await axiosInstance.post("/auth/login", JSON.stringify(data))
+            .then(res => {
+                axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + res.data.access_token;
+                // for debug
+                console.log(res.data);
+                console.log(axiosInstance.defaults.headers.common["Authorization"]);
+            }).catch(err => {
+                console.log("login requset fail : " + err);
+            }).finally(() => {
+                console.log("login request end")
+            });
         } catch(err) {
             console.log(err)
         }

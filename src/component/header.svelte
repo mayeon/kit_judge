@@ -13,17 +13,33 @@
 
     async function getUserInfo() {
         try {
-            await axiosInstance.get("/user/me", 
-            ).then(res => {
+            await axiosInstance.get("/user/me")
+            .then(res => {
                 // for debug
                 console.log(res.data);
             }).catch(err => {
                 console.log("my info requset fail : " + err);
-            }).finally(()=>{
+            }).finally(() => {
                 console.log("my info request end")
             });
         } catch(err) {
             console.log(err)
+        }
+    }
+
+    async function logout() {
+        try {
+            await axiosInstance.delete("/auth/logout")
+            .then(res => {
+                console.log(res.data);
+                push("/");
+            }).catch(err => {
+                console.log("logout request fail : " + err);
+            }).finally(() => {
+                console.log("logout request end")
+            }); 
+        } catch(err) {
+            console.log(err);
         }
     }
 </script>
@@ -60,7 +76,7 @@
                     </span></IconButton
                 > -->
 
-                <Title on:click={() => push("/")}
+                <Title on:click={() => logout()}
                     >로그아웃</Title
                 >
             {/if}
