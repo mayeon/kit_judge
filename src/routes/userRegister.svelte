@@ -13,123 +13,151 @@
         passwordMatch,
         containNumbers,
     } from "../functions/customValidators";
+    import { axios, sourceURL } from "../functions/source";
 
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
     let type = false;
+
+    const data = {
+        email: "",
+        password: "",
+        name: "",
+        type: 0,
+        student_id: "0",
+    };
+
+    const config = {
+        method: "post",
+        url: `${sourceURL}/user/`,
+        headers: {},
+        data: data,
+    };
+
+    function clicked() {
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 </script>
 
 <main>
-    <form use:form id="register">
-        <h1>회원가입</h1>
+    <h1>회원가입</h1>
 
-        <div class="form-check form-switch switch">
-            <input
-                class="form-check-input"
-                type="checkbox"
-                role="switch"
-                name="type"
-                bind:checked={type}
-            />
-            <label class="form-check-label" for="type">교수자</label>
-        </div>
+    <div class="form-check form-switch switch">
+        <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            name="type"
+            bind:checked={type}
+            bind:value={data.student_id}
+        />
+        <label class="form-check-label" for="type">교수자</label>
+    </div>
 
-        {#if !type}
-            <div class="input-box">
-                <input
-                    type="number"
-                    class="form-control"
-                    name="studentNum"
-                    use:validators={[required, minLength(8)]}
-                    placeholder="학번"
-                />
-                <div class="hint">
-                    <HintGroup for="studentNum">
-                        <Hint on="required">{requiredMessage}</Hint>
-                        <Hint on="minLength" hideWhenRequired let:value>
-                            학번은 {value}자리 입니다.
-                        </Hint>
-                    </HintGroup>
-                </div>
-            </div>
-        {/if}
-
+    {#if !type}
         <div class="input-box">
             <input
-                type="text"
+                type="number"
                 class="form-control"
-                name="id"
-                use:validators={[required]}
-                placeholder="아이디"
+                name="studentNum"
+                use:validators={[required, minLength(8)]}
+                placeholder="학번"
+                bind:value={data.student_id}
             />
             <div class="hint">
-                <HintGroup for="id">
-                    <Hint on="required">{requiredMessage}</Hint>
-                </HintGroup>
-            </div>
-        </div>
-
-        <div class="input-box">
-            <input
-                type="text"
-                class="form-control"
-                name="name"
-                use:validators={[required]}
-                placeholder="이름"
-            />
-            <div class="hint">
-                <HintGroup for="name">
-                    <Hint on="required">{requiredMessage}</Hint>
-                </HintGroup>
-            </div>
-        </div>
-
-        <div class="input-box">
-            <input
-                type="password"
-                class="form-control"
-                name="password"
-                use:validators={[required, minLength(5), containNumbers(2)]}
-                placeholder="비밀번호"
-            />
-            <div class="hint">
-                <HintGroup for="password">
+                <HintGroup for="studentNum">
                     <Hint on="required">{requiredMessage}</Hint>
                     <Hint on="minLength" hideWhenRequired let:value>
-                        최소 {value}자 이상이여야 합니다.
-                    </Hint>
-                    <Hint on="containNumbers" hideWhen="minLength" let:value>
-                        최소 {value}개의 숫자가 필요합니다.
+                        학번은 {value}자리 입니다.
                     </Hint>
                 </HintGroup>
             </div>
         </div>
+    {/if}
 
-        <div class="input-box">
-            <input
-                type="password"
-                class="form-control"
-                name="passwordConfirmation"
-                use:validators={[required, passwordMatch]}
-                placeholder="비밀번호 확인"
-            />
-            <div class="hint">
-                <HintGroup for="passwordConfirmation">
-                    <Hint on="required">{requiredMessage}</Hint>
-                    <Hint on="passwordMatch" hideWhenRequired>
-                        Passwords do not match
-                    </Hint>
-                </HintGroup>
-            </div>
+    <div class="input-box">
+        <input
+            type="text"
+            class="form-control"
+            name="id"
+            use:validators={[required]}
+            placeholder="아이디"
+            bind:value={data.email}
+        />
+        <div class="hint">
+            <HintGroup for="id">
+                <Hint on="required">{requiredMessage}</Hint>
+            </HintGroup>
         </div>
-        <br />
-    </form>
+    </div>
+
+    <div class="input-box">
+        <input
+            type="text"
+            class="form-control"
+            name="name"
+            use:validators={[required]}
+            placeholder="이름"
+            bind:value={data.name}
+        />
+        <div class="hint">
+            <HintGroup for="name">
+                <Hint on="required">{requiredMessage}</Hint>
+            </HintGroup>
+        </div>
+    </div>
+
+    <div class="input-box">
+        <input
+            type="password"
+            class="form-control"
+            name="password"
+            use:validators={[required, minLength(5), containNumbers(2)]}
+            placeholder="비밀번호"
+            bind:value={data.password}
+        />
+        <div class="hint">
+            <HintGroup for="password">
+                <Hint on="required">{requiredMessage}</Hint>
+                <Hint on="minLength" hideWhenRequired let:value>
+                    최소 {value}자 이상이여야 합니다.
+                </Hint>
+                <Hint on="containNumbers" hideWhen="minLength" let:value>
+                    최소 {value}개의 숫자가 필요합니다.
+                </Hint>
+            </HintGroup>
+        </div>
+    </div>
+
+    <div class="input-box">
+        <input
+            type="password"
+            class="form-control"
+            name="passwordConfirmation"
+            use:validators={[required, passwordMatch]}
+            placeholder="비밀번호 확인"
+        />
+        <div class="hint">
+            <HintGroup for="passwordConfirmation">
+                <Hint on="required">{requiredMessage}</Hint>
+                <Hint on="passwordMatch" hideWhenRequired>
+                    Passwords do not match
+                </Hint>
+            </HintGroup>
+        </div>
+    </div>
+    <br />
     <button
-        form="register"
         id="register-btn"
         class="btn btn-outline-secondary"
         disabled={!$form.valid}
-        on:click|preventDefault
+        on:click={clicked}
     >
         제출
     </button>
