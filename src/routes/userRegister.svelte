@@ -1,5 +1,4 @@
 <script>
-    import { link } from "svelte-spa-router";
     import {
         useForm,
         Hint,
@@ -15,9 +14,7 @@
     } from "../functions/customValidators";
     import { axios, sourceURL } from "../functions/source";
     import { push } from "svelte-spa-router";
-    import IconButton from "@smui/icon-button";
     import Snackbar, { Actions, Label } from "@smui/snackbar";
-    import Button from "@smui/button";
 
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
