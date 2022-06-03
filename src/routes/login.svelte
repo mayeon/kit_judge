@@ -22,12 +22,18 @@
                 "password": userPw
             };
 
+            console.log("login request");
             await axiosInstance.post("/auth/login", JSON.stringify(data))
             .then(res => {
-                axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + res.data.access_token;
-                // for debug
-                console.log(res.data);
-                console.log(axiosInstance.defaults.headers.common["Authorization"]);
+                sessionStorage.removeItem('access_token');
+                sessionStorage.removeItem('refresh_token');
+                sessionStorage.setItem('access_token', JSON.stringify(res.data.access_token));
+                sessionStorage.setItem('refresh_token', JSON.stringify(res.data.refresh_token));
+
+                // axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`;
+                // console.log(res.data);
+                // console.log(axiosInstance.defaults.headers.common["Authorization"]);
+                // console.log(axiosInstance.defaults.headers.common);
             }).catch(err => {
                 console.log("login requset fail : " + err);
             }).finally(() => {

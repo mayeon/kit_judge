@@ -13,6 +13,7 @@
 
     async function getUserInfo() {
         try {
+            console.log("my info requset");
             await axiosInstance.get("/user/me")
             .then(res => {
                 // for debug
@@ -29,9 +30,12 @@
 
     async function logout() {
         try {
+            console.log("logout requset");
             await axiosInstance.delete("/auth/logout")
             .then(res => {
                 console.log(res.data);
+                sessionStorage.removeItem('access_token')
+                sessionStorage.removeItem('refresh_token')
                 push("/");
             }).catch(err => {
                 console.log("logout request fail : " + err);
