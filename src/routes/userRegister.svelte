@@ -37,13 +37,12 @@
     function clicked() {
         if (type) {
             // 교수자
-            data.type = 0;
-            delete data.student_id;
+            data.type = 2;
+            data.student_id = null;
         } else {
             // 학생
             data.type = 1;
         }
-        console.log(data);
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
