@@ -15,6 +15,9 @@
     } from "../functions/customValidators";
     import { axios, sourceURL } from "../functions/source";
     import { push } from "svelte-spa-router";
+    import IconButton from "@smui/icon-button";
+    import Snackbar, { Actions, Label } from "@smui/snackbar";
+    import Button from "@smui/button";
 
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
@@ -50,9 +53,14 @@
                 push("/login");
             })
             .catch(function (error) {
+                snackbarText = "❌ 회원가입 실패";
+                snackbar.open();
                 console.log(error);
             });
     }
+
+    let snackbar;
+    let snackbarText;
 </script>
 
 <main>
@@ -175,6 +183,10 @@
 		{JSON.stringify($form, null, 1)}
         교수자 : {type}
 	</pre> -->
+
+    <Snackbar bind:this={snackbar} labelText={snackbarText}>
+        <Label />
+    </Snackbar>
 </main>
 
 <style>
