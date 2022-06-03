@@ -1,5 +1,5 @@
 <script>
-    import { axios, sourceURL } from "../functions/source.js"
+    import { axiosInstance, sourceURL } from "../functions/source.js"
     import { link } from "svelte-spa-router";
     import {
         useForm,
@@ -17,20 +17,22 @@
 
     async function login() {
         try {
-            const url = sourceURL + "/auth";
-            const data = JSON.stringify({userEmail, userPw});
+            const data = {
+                "email": userEmail,
+                "password": userPw
+            };
+
             await 
-                axios.post(url, data, {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }).then(res => {
+                axiosInstance.post("/auth/login", JSON.stringify(data))
+                .then(res => {
+                    // for debug
                     console.log(res.data);
-                    axios.defaults.headers.common["Authorization"] = "Bearer " + res.data;
+                    console.log(axiosInstance.defaults.headers.common["Authorization"]);
+
+                    axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + res.data.access_token;
                 }).catch(err => {
                     console.log("login requset fail : " + err);
                 }).finally(()=>{
-                    // 페이지 이동 추가
                     console.log("login request end")
                 });
         } catch(err) {

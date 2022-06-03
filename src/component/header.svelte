@@ -1,4 +1,5 @@
 <script>
+    import { axios, axiosInstance, sourceURL } from "../functions/source.js"
     import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
     import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
@@ -9,6 +10,22 @@
     // {loggedIn:false};
     const prominent = false;
     const dense = true;
+
+    async function getUserInfo() {
+        try {
+            await axiosInstance.get("/user/me", 
+            ).then(res => {
+                // for debug
+                console.log(res.data);
+            }).catch(err => {
+                console.log("my info requset fail : " + err);
+            }).finally(()=>{
+                console.log("my info request end")
+            });
+        } catch(err) {
+            console.log(err)
+        }
+    }
 </script>
 
 <div class="top-bar">
@@ -26,13 +43,23 @@
 
             <Section>
             {#if user.loggedIn}
+                <!-- 페이지 넘어가면서 값 넘기는걸 못해서 일단 콘솔에 찍기용 -->
                 <IconButton
                     class="material-icons user-info-btn"
-                    on:click={() => push("/user")}
+                    on:click={() => getUserInfo()}
                     ><span class="material-symbols-outlined">
                         account_circle
                     </span></IconButton
                 >
+
+                <!-- <IconButton
+                    class="material-icons user-info-btn"
+                    on:click={() => push("/")}
+                    ><span class="material-symbols-outlined">
+                        account_circle
+                    </span></IconButton
+                > -->
+
                 <Title on:click={() => push("/")}
                     >로그아웃</Title
                 >
