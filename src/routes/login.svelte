@@ -1,4 +1,5 @@
 <script>
+    import { axiosInstance, sourceURL } from "../functions/source.js"
     import { link } from "svelte-spa-router";
     import {
         useForm,
@@ -10,19 +11,48 @@
     } from "svelte-use-form";
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
+
+    let userEmail = "";
+    let userPw = "";
+
+    async function login() {
+        try {
+            const data = {
+                "email": userEmail,
+                "password": userPw
+            };
+
+            await 
+                axiosInstance.post("/auth/login", JSON.stringify(data))
+                .then(res => {
+                    // for debug
+                    console.log(res.data);
+                    console.log(axiosInstance.defaults.headers.common["Authorization"]);
+
+                    axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + res.data.access_token;
+                }).catch(err => {
+                    console.log("login requset fail : " + err);
+                }).finally(()=>{
+                    console.log("login request end")
+                });
+        } catch(err) {
+            console.log(err)
+        }
+    }
 </script>
 
 <div id="login-form">
-    <form use:form id="login">
+    <form use:form on:submit|preventDefault id="login">
         <h1>로그인</h1>
 
         <div class="input-box">
             <input
-                type="text"
+                type="email"
                 class="form-control"
                 name="id"
                 use:validators={[required]}
-                placeholder="아이디"
+                placeholder="이메일"
+                bind:value={userEmail}
             />
             <div class="hint">
                 <HintGroup for="id" class="hint">
@@ -38,6 +68,7 @@
                 name="password"
                 use:validators={[required]}
                 placeholder="비밀번호"
+                bind:value={userPw}
             />
             <div class="hint">
                 <HintGroup for="password" class="hint">
@@ -62,6 +93,7 @@
                         id="login-btn"
                         form="login"
                         class="btn btn-outline-secondary"
+                        on:click={login}
                         disabled={!$form.valid}>로그인</button
                     >
                 </div>

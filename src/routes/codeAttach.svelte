@@ -1,30 +1,7 @@
 <script>
-    import "codemirror/mode/javascript/javascript";
-    import "codemirror/mode/clike/clike.js";
-    import "codemirror/addon/edit/closebrackets.js";
-    import "codemirror/theme/dracula.css";
-
-    import CodeMirror from "../component/codeMirror.svelte";
     import Button, { Group, Label } from "@smui/button";
-    import Card from "@smui/card";
     import Paper, { Title, Subtitle, Content } from "@smui/paper";
-    import { sourceURL, axios } from "../functions/source.js"
-
-    const code = `public class Main {\n\tpublic static void main(String[] args) {\n\t\t\n\t}\n}`;
-
-    const options = {
-        matchBrackets: true,
-        autoCloseBrackets: true,
-        mode: "text/x-java",
-        lineNumbers: true,
-        lineWrapping: true,
-        value: code,
-        theme: "dracula",
-        indentUnit: 4,
-    };
-    let codes = [{ id: 1, text: `Main` }, {id: 0, text: '+'}];
-    let editor;
-
+    import { axios, sourceURL } from "../functions/source.js"
 
     let formData = new FormData();
 
@@ -72,9 +49,9 @@
         axiosPost(sourceURL + "/testDB", {data: formData}, config).then((res) => console.log(res));
     }
 
-    async function axiosPost(url, data, header = {"content-type": "application/json; charset=UTF-8",}) {
+    async function axiosPost(url, data, headers = {"content-type": "application/json; charset=UTF-8",}) {
         try {
-            return await axios.post(url, data, header);
+            return await axios.post(url, data, headers);
         } catch (e) {
             console.log(e);
         }
