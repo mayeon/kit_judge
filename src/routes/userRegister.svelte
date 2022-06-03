@@ -14,6 +14,7 @@
         containNumbers,
     } from "../functions/customValidators";
     import { axios, sourceURL } from "../functions/source";
+    import { push } from "svelte-spa-router";
 
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
@@ -46,6 +47,7 @@
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
+                push("/login");
             })
             .catch(function (error) {
                 console.log(error);
