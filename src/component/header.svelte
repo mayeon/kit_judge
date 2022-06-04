@@ -4,26 +4,51 @@
     import { link } from "svelte-spa-router";
     import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
     import IconButton, { Icon } from "@smui/icon-button";
+    import {get} from "svelte/store"
+    import {userInfoStore} from "../functions/store.js";
 
-    // 로그인 여부 (임시)
-    let user = { loggedIn: true };
-    // {loggedIn:false};
     const prominent = false;
     const dense = true;
 
+    console.log(sessionStorage.getItem('access_token'));
+    
     async function getUserInfo() {
         try {
-            await axiosInstance.get("/user/me", 
-            ).then(res => {
-                // for debug
-                console.log(res.data);
+            console.log("my info requset");
+            await axiosInstance.get("/user/me")
+            .then(res => {
+                const userData = {
+                    id: res.data.student_id,
+                    name: res.data.name,
+                    email: res.data.email
+                };
+                userInfoStore.set(userData);
+                push("/user");
             }).catch(err => {
                 console.log("my info requset fail : " + err);
-            }).finally(()=>{
+            }).finally(() => {
                 console.log("my info request end")
             });
         } catch(err) {
             console.log(err)
+        }
+    }
+
+    async function logout() {
+        try {
+            console.log("logout requset");
+            await axiosInstance.delete("/auth/logout")
+            .then(res => {
+                sessionStorage.removeItem('access_token')
+                sessionStorage.removeItem('refresh_token')
+                push("/");
+            }).catch(err => {
+                console.log("logout request fail : " + err);
+            }).finally(() => {
+                console.log("logout request end")
+            }); 
+        } catch(err) {
+            console.log(err);
         }
     }
 </script>
@@ -37,34 +62,25 @@
                 >
             </Section>
 
-            <Section>
-                <a href="/class" use:link> 강의실 </a>
-            </Section>
+            {#if true}
+                <Section>
+                    <a href="/class" use:link> 강의실 </a>
+                </Section>
 
-            <Section>
-            {#if user.loggedIn}
-                <!-- 페이지 넘어가면서 값 넘기는걸 못해서 일단 콘솔에 찍기용 -->
-                <IconButton
-                    class="material-icons user-info-btn"
-                    on:click={() => getUserInfo()}
-                    ><span class="material-symbols-outlined">
-                        account_circle
-                    </span></IconButton
-                >
+                <Section>
+                    <IconButton
+                        class="material-icons user-info-btn"
+                        on:click={() => getUserInfo()}
+                        ><span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                    </IconButton>
 
-                <!-- <IconButton
-                    class="material-icons user-info-btn"
-                    on:click={() => push("/")}
-                    ><span class="material-symbols-outlined">
-                        account_circle
-                    </span></IconButton
-                > -->
-
-                <Title on:click={() => push("/")}
-                    >로그아웃</Title
-                >
+                    <Title on:click={() => logout()}
+                        >로그아웃</Title
+                    >
+                </Section>
             {/if}
-            </Section>
         </Row>
     </TopAppBar>
 </div>

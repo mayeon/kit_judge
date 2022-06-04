@@ -1,5 +1,6 @@
 <script>
     import { axiosInstance, sourceURL } from "../functions/source.js"
+    import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
     import {
         useForm,
@@ -9,6 +10,7 @@
         email,
         required,
     } from "svelte-use-form";
+    
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
 
@@ -22,19 +24,19 @@
                 "password": userPw
             };
 
-            await 
-                axiosInstance.post("/auth/login", JSON.stringify(data))
-                .then(res => {
-                    // for debug
-                    console.log(res.data);
-                    console.log(axiosInstance.defaults.headers.common["Authorization"]);
-
-                    axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + res.data.access_token;
-                }).catch(err => {
-                    console.log("login requset fail : " + err);
-                }).finally(()=>{
-                    console.log("login request end")
-                });
+            console.log("login request");
+            await axiosInstance.post("/auth/login", JSON.stringify(data))
+            .then(res => {
+                sessionStorage.removeItem('access_token');
+                sessionStorage.removeItem('refresh_token');
+                sessionStorage.setItem('access_token', JSON.stringify(res.data.access_token));
+                sessionStorage.setItem('refresh_token', JSON.stringify(res.data.refresh_token));
+                push("/class");
+            }).catch(err => {
+                console.log("login requset fail : " + err);
+            }).finally(() => {
+                console.log("login request end")
+            });
         } catch(err) {
             console.log(err)
         }

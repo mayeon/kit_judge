@@ -13,7 +13,7 @@
     const form = useForm();
     const elevation = 10;
 
-     const currentEmail = "이메일@email.com";
+    const currentEmail = "이메일@email.com";
     let changeEmail = "";
     function checkEmail () {
         if (currentEmail != checkEmail) {
