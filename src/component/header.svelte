@@ -10,6 +10,8 @@
     const prominent = false;
     const dense = true;
 
+    console.log(sessionStorage.getItem('access_token'));
+    
     async function getUserInfo() {
         try {
             console.log("my info requset");
@@ -73,14 +75,6 @@
                             account_circle
                         </span>
                     </IconButton>
-
-                    <!-- <IconButton
-                        class="material-icons user-info-btn"
-                        on:click={() => push("/")}
-                        ><span class="material-symbols-outlined">
-                            account_circle
-                        </span></IconButton
-                    > -->
 
                     <Title on:click={() => logout()}
                         >로그아웃</Title

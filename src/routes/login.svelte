@@ -1,5 +1,6 @@
 <script>
     import { axiosInstance, sourceURL } from "../functions/source.js"
+    import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
     import {
         useForm,
@@ -30,6 +31,7 @@
                 sessionStorage.removeItem('refresh_token');
                 sessionStorage.setItem('access_token', JSON.stringify(res.data.access_token));
                 sessionStorage.setItem('refresh_token', JSON.stringify(res.data.refresh_token));
+                push("/class");
             }).catch(err => {
                 console.log("login requset fail : " + err);
             }).finally(() => {
