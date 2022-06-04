@@ -1,4 +1,8 @@
 <script>
+    import { axiosInstance, sourceURL } from "../functions/source.js"
+    import { get } from "svelte/store"
+    import { userInfoStore } from "../functions/store.js";
+    import { push } from "svelte-spa-router";
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Textfield from "@smui/textfield";
     import Menu from "../component/userInfoMenu.svelte"
@@ -11,6 +15,7 @@
     const form = useForm();
     const elevation = 10;
 
+    const userInfo = get(userInfoStore);
     let newPw = "";
     let newPwCheck = "";
 
@@ -21,8 +26,25 @@
             if (newPw != newPwCheck) {
                 alert("새 비밀번호가 일치하지 않습니다.");
             } else {
-                alert("비밀번호가 변경되었습니다.");
-                location.href="/#/user";
+                const userData = {
+                    "email": userInfo.email,
+                    "password": newPw,
+                    "name": userInfo.name,
+                    "student_id": userInfo.student_id
+                };
+                console.log(userData)
+
+                console.log("update user password request");
+                axiosInstance.put("/user/me", userData)
+                .then(() => {
+                    userInfoStore.set(userData);
+                    alert("비밀번호가 변경되었습니다.");
+                    push("/user");
+                }).catch((err) => {
+                    console.log("update user password request fail : " + err);
+                }).finally(() => {
+                    console.log("update user password request end")
+                })
             }
         }
     }
@@ -33,7 +55,7 @@
     <Menu />
 
     <Paper {elevation} class="user-update-pw">
-        <form use:form id="changePw">
+        <form use:form on:submit|preventDefault id="changePw">
             <div class="user-update-newpw">
                 <input type="password" name="newPw" placeholder="새 비밀번호" bind:value={newPw} use:validators={[required]}/>
             </div>
