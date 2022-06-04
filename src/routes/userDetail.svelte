@@ -1,11 +1,14 @@
 <script>
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Menu from "../component/userInfoMenu.svelte"
+    import {get} from "svelte/store";
+    import {userInfoStore} from "../functions/store.js";
 
     const elevation = 10;
-    let student_id = "20202020";
-    let user_name = "이름이름";
-    let user_email = "이메일@email.com";
+    const userData = get(userInfoStore);
+    let student_id = userData.id;
+    let user_name = userData.name;
+    let user_email = userData.email;
 </script>
 
 <div class="user-info-container">
