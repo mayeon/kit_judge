@@ -17,7 +17,9 @@
     <Menu />
     <Paper {elevation} class="user-info">
         <Title class="user-info-user-name"> {user_name}</Title>
-        <Subtitle class="user-info-studnet-id"> 학번: {student_id}</Subtitle>
+        {#if (student_id != null)}
+            <Subtitle class="user-info-studnet-id"> 학번: {student_id}</Subtitle>
+        {/if}
         <Subtitle class="user-info-user-email"> 이메일: {user_email}</Subtitle>
     </Paper>
 </div>
