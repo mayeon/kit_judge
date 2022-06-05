@@ -1,4 +1,8 @@
 <script>
+    import { axiosInstance, sourceURL } from "../functions/source.js"
+    import { get } from "svelte/store"
+    import { userInfoStore } from "../functions/store.js";
+    import { push } from "svelte-spa-router";
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Textfield from "@smui/textfield";
     import Menu from "../component/userInfoMenu.svelte"
@@ -12,23 +16,39 @@
 
     const form = useForm();
     const elevation = 10;
+    
+    const userInfo = get(userInfoStore);
+    let newEmail = "";
 
-    const currentEmail = "이메일@email.com";
-    let changeEmail = "";
     function checkEmail () {
-        if (currentEmail != checkEmail) {
-            if (checkEmailFormat(changeEmail)) {
-                alert("이메일이 변경되었습니다.");
-                location.href="/#/user";
+        if (userInfo.email != newEmail) {
+            if (checkEmailFormat(newEmail)) {
+                const userData = {
+                    email: newEmail,
+                    password: userInfo.password,
+                    name: userInfo.name,
+                    student_id: userInfo.student_id
+                };
+
+                console.log("update user email request");
+                axiosInstance.put("/user/me", userData)
+                .then(() => {
+                    userInfoStore.set(userData);
+                    alert("이메일이 변경되었습니다.");
+                    push("/user");
+                }).catch((err) => {
+                    console.log("update user email request fail : " + err);
+                }).finally(() => {
+                    console.log("update user email request end")
+                })
             } else {
                 alert("이메일 형식이 아닙니다.");
             }
         } else {
-            console.log(currentEmail);
-            console.log(changeEmail);
             alert("이메일이 변경되지 않았습니다.");
         }
     }
+
     function checkEmailFormat(changeEmail) {
         let emailFormat = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
         if (!emailFormat.test(changeEmail)) {
@@ -44,9 +64,9 @@
     <Menu />
 
     <Paper {elevation} class="user-update-info">
-        <form use:form id="changeInfo">
+        <form use:form on:submit|preventDefault id="changeInfo">
             <div class="user-update-info">
-                <input type="email" name="newInfo" placeholder="abc123@email.com" bind:value={changeEmail} use:validators={[required]}/>
+                <input type="email" name="newInfo" placeholder="abc123@email.com" bind:value={newEmail} use:validators={[required]}/>
             </div>
         </form>
 

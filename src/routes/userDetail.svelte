@@ -1,12 +1,12 @@
 <script>
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Menu from "../component/userInfoMenu.svelte"
-    import {get} from "svelte/store";
-    import {userInfoStore} from "../functions/store.js";
+    import { get } from "svelte/store";
+    import { userInfoStore } from "../functions/store.js";
 
     const elevation = 10;
     const userData = get(userInfoStore);
-    let student_id = userData.id;
+    let student_id = userData.student_id;
     let user_name = userData.name;
     let user_email = userData.email;
 </script>
