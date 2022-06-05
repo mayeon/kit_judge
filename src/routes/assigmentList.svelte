@@ -7,14 +7,10 @@
 
     export let params = {};
 
-    const data = {
-        classroom_id: params.classId,
-    };
-
     let assigmentList = [];
     onMount(async () => {
         await axiosInstance
-            .get(`${sourceURL}/assigment/`, data)
+            .get(`${sourceURL}/classroom/${params.classId}/assignment`)
             .then((response) => {
                 assigmentList = response.data;
                 console.log(response.data);
@@ -29,14 +25,12 @@
     <h1>과제목록</h1>
 
     <LayoutGrid>
-        {#each assigmentList as _assigment, i}
+        {#each assigmentList as assigment, i}
             <Cell span={3}>
                 <Paper>
-                    <Title>dsa</Title>
-                    <Subtitle>과목명: dsa</Subtitle>
-                    <Subtitle>디데이 asd</Subtitle>
-                    <Subtitle>설명</Subtitle>
-                    <Content class="assignment-block-explain">sad</Content>
+                    <Title>{assigment.title}</Title>
+                    <Subtitle>시작일: {assigment.start_date}</Subtitle>
+                    <Subtitle>종료일: {assigment.end_date}</Subtitle>
                 </Paper>
             </Cell>
         {/each}
