@@ -9,6 +9,7 @@ import UserUpdatePw from "../routes/userUpdatePw.svelte";
 import AssignmentWrite from "../routes/assignmentEditor.svelte";
 import AssignmentDetail from "../routes/assignmentDetail.svelte";
 import AssignmentResult from "../routes/assignmentResult.svelte";
+import AssignmentList from "../routes/assigmentList.svelte";
 
 import ClassNew from "../routes/classNew.svelte";
 import ClassJoin from "../routes/classJoin.svelte";
@@ -42,6 +43,7 @@ const routes = {
     "/class/new": ClassNew,
     "/class/join": ClassJoin,
     "/class/student": ClassStudentControll,
+    "/class/:classId/assigment": AssignmentList,
 
     "/test": Test,
     "/links": Links,
