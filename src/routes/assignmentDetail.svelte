@@ -1,27 +1,55 @@
 <script lang="ts">
+    import { axiosInstance } from "../functions/source.js";
     import Paper, { Title, Subtitle } from "@smui/paper";
     import Card, { Content } from "@smui/card";
-
     import Testcase from "../component/Testcase.svelte";
+    import { onMount } from "svelte";
+
+    export let params = {};
 
     const elevation = 10;
+    let assigmentInfo = {};
+    let testcaseInfo = [];
 
-    let testcases = [
-        { input: "12321", output: "12321", score: "30" },
-        { input: "12321", output: "12321", score: "40" },
-    ];
+    onMount(async () => {
+        console.log("assignment detail request");
+        await axiosInstance.get(`/assignment/${params.assignmentId}`)
+            .then(res => {
+                assigmentInfo = res.data;
+                console.log(assigmentInfo)
+            }).catch(err => {
+                console.log("assignment detail request fail : " + err);
+            }).finally(() => {
+                console.log("assignment detail request end");
+            });
+
+        console.log("assignment detail testcase request");
+        await axiosInstance.get(`/assignment/${params.assignmentId}/testcase`)
+            .then(res => {
+                testcaseInfo = res.data;
+                console.log(testcaseInfo)
+            }).catch(err => {
+                console.log("assignment detail testcase request fail : " + err);
+            }).finally(() => {
+                console.log("assignment detail testcase request end");
+            });
+    });
+
+    function convertDateFormat(source) {
+        return (source + '').substring(0, 19).replace("T", " ");
+    }
 </script>
 
 <div class="paper-container">
     <Paper {elevation}>
-        <Title>과제 이름</Title>
-        <Subtitle>과목 이름</Subtitle>
-        <Subtitle>기간 : 2020/12/12 ~ 2102/21/12</Subtitle>
-        <Content>설명</Content>
+        <Title>{assigmentInfo.title}</Title>
+        <Subtitle>기간 : {`${convertDateFormat(assigmentInfo.start_date)} ~ ${convertDateFormat(assigmentInfo.end_date)}`}</Subtitle>
+        <Content>{assigmentInfo.desc}</Content>
 
         <Subtitle>테스트 케이스</Subtitle>
-        {#each testcases as testcase}
-            <Testcase input={testcase.input} output={testcase.output} score={testcase.score}/>
+        {#each testcaseInfo as testcase}
+            <!-- <Testcase input={testcase.input} output={testcase.output} score={testcase.score}/> -->
+            <Testcase input={testcase.input} output={testcase.output}/>
             <br />
         {/each}
     </Paper>

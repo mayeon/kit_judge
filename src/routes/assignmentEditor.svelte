@@ -10,6 +10,7 @@
     import Card, { Content } from "@smui/card";
     import Testcase from "../component/Testcase.svelte";
     import Paper, { Title, Subtitle } from "@smui/paper";
+    import { push } from "svelte-spa-router";
 
     import Quill from "quill";
     let quill = null;
@@ -120,12 +121,39 @@
             
             console.log("request prof add assignment request");
             await axiosInstance.post("/assignment/", data).then(res => {
-                console.log(res.data.id);
+                addAssignmentTestCase(res.data.id);
+                push("/class/" + classInfo.id + "/assigment");
             }).catch(err => {
                 console.log("request prof add assignment request fail : " + err);
             }).finally(() =>{
                 console.log("request prof add assignment request end");
             });
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    async function addAssignmentTestCase(assignment_id) {
+        try {
+            let data = {
+                "assignment_id": assignment_id,
+            };
+            
+            console.log("request prof add assignment testcase request");
+            for (let i = 0; i < testcases.length; i++) {
+                data = {
+                    ...data,
+                    "input": testcases[i].input,
+                    "output": testcases[i].output,
+                }
+                console.log(data)
+                await axiosInstance.post("/testcase/", data)
+                    .catch(err => {
+                        console.log("request prof add assignment testcase request fail : " + err);
+                    }).finally(() =>{
+                        console.log("request prof add assignment testcase request end");
+                    });
+            }
         } catch(err) {
             console.log(err);
         }
@@ -204,7 +232,7 @@
             </Textfield>
         </div>
 
-        <div class="assignment-editor-testcase-score">
+        <!-- <div class="assignment-editor-testcase-score">
             <Textfield
                 textarea
                 bind:value={testcaseScore}
@@ -218,7 +246,7 @@
                     >테스트케이스의 점수를 넣어주세요.</HelperText
                 >
             </Textfield>
-        </div>
+        </div> -->
 
         <IconButton class="material-icons assignment-editor-testcase-add" on:click={addTestCase}
             >add</IconButton
