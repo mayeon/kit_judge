@@ -4,6 +4,7 @@
     import Paper, { Title, Subtitle, Content } from "@smui/paper";
     import { beforeUpdate, onMount } from "svelte";
     import { axiosInstance, sourceURL } from "../functions/source";
+    import IconButton, { Icon } from "@smui/icon-button";
 
     export let params = {};
 
@@ -32,13 +33,23 @@
         {#each assigmentList as assigment, i}
             <Cell span={3}>
                 <Paper on:click={() => handleClick(assigment.id)}>
-                <!-- <Paper> -->
                     <Title>{assigment.title}</Title>
                     <Subtitle>시작일: {assigment.start_date}</Subtitle>
                     <Subtitle>종료일: {assigment.end_date}</Subtitle>
                 </Paper>
             </Cell>
         {/each}
+
+        {#if sessionStorage.getItem("type") == 2}
+        <Cell span={3}>
+            <Paper class="add-paper">
+                <IconButton
+                class="material-icons"
+                on:click={() => push("/assignment/new")}>add</IconButton
+            >
+            </Paper>
+        </Cell>
+        {/if}
     </LayoutGrid>
 </div>
 
