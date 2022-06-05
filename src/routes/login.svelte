@@ -43,6 +43,7 @@
                         type: res.data.type
                     };
                     userInfoStore.set(userData);
+                    sessionStorage.setItem("type", userData.type);
                 }).catch(err => {
                     console.log("my info requset fail : " + err);
                 }).finally(() => {
