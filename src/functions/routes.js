@@ -32,8 +32,8 @@ const routes = {
     "/user/new": UserRegister,
 
     "/main": Main,
-    "/code": CodeWrite,
-    "/codeAttach": CodeAttach,
+    "/code/write": CodeWrite,
+    "/code/attach": CodeAttach,
 
     "/assignment/detail/:assignmentId": AssignmentDetail,
     "/assignment/new": AssignmentWrite,
