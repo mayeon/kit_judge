@@ -34,7 +34,8 @@
                 sessionStorage.setItem('refresh_token', JSON.stringify(res.data.refresh_token));
 
                 userInfoStore.set(userData);
-                $isLoggedIn = 1;
+                // $isLoggedIn = 1;
+                isLoggedIn.setStorage(1);
                 push("/class");
             }).catch(err => {
                 alert("계정 정보를 확인해주세요.");

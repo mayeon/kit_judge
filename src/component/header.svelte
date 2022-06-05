@@ -39,7 +39,7 @@
             .then(res => {
                 sessionStorage.removeItem('access_token')
                 sessionStorage.removeItem('refresh_token')
-                $isLoggedIn = null;
+                isLoggedIn.deleteStorage();
                 push("/");
             }).catch(err => {
                 console.log("logout request fail : " + err);
@@ -55,11 +55,8 @@
 <div class="top-bar">
     <TopAppBar variant="static" {prominent} {dense} color="secondary">
         <Row>
-            <Section>
-            </Section>
-
             <!-- 로그인 성공 -->
-            {#if $isLoggedIn}
+            {#if ($isLoggedIn || isLoggedIn.getStorage())}
                 <Section>
                     <Title on:click={() => push("/class")}
                         >금오공대 과제 채점 시스템</Title
