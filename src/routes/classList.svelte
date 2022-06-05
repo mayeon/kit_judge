@@ -33,10 +33,10 @@
     function handleNewClass() {
         const type = sessionStorage.getItem("type");
 
-        if (type == 1) {
+        if (type == "1") {
             //학생
             push("/class/join");
-        } else if (type == 2) {
+        } else if (type == "2") {
             // 교수자
             push("/class/new");
         }
