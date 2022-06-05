@@ -5,6 +5,8 @@
     import IconButton, { Icon } from "@smui/icon-button";
     import { axiosInstance, sourceURL } from "../functions/source";
     import { beforeUpdate, onMount } from "svelte";
+    import { get } from "svelte/store";
+    import { userInfoStore } from "../functions/store.js";
 
     const config = {
         method: "get",
@@ -27,6 +29,11 @@
     function handleClick(classRoomId) {
         push(`/class/${classRoomId}/assigment`);
     }
+
+    function handleNewClass() {
+        console.log(get(userInfoStore));
+        // push("/class/new");
+    }
 </script>
 
 <LayoutGrid>
@@ -42,9 +49,8 @@
     {/each}
     <Cell span={1}>
         <Paper class="add-paper">
-            <IconButton
-                class="material-icons"
-                on:click={() => push("/class/new")}>add</IconButton
+            <IconButton class="material-icons" on:click={handleNewClass}
+                >add</IconButton
             >
         </Paper>
     </Cell>
