@@ -31,7 +31,7 @@
     }
 
     function handleNewClass() {
-        const type = get(userInfoStore).type;
+        const type = sessionStorage.getItem("type");
 
         if (type == 1) {
             //학생
