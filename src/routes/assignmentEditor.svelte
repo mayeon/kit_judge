@@ -10,6 +10,7 @@
     import Card, { Content } from "@smui/card";
     import Testcase from "../component/Testcase.svelte";
     import Paper, { Title, Subtitle } from "@smui/paper";
+    import { push } from "svelte-spa-router";
 
     import Quill from "quill";
     let quill = null;
@@ -120,12 +121,38 @@
             
             console.log("request prof add assignment request");
             await axiosInstance.post("/assignment/", data).then(res => {
-                console.log(res.data.id);
+                push("/class/" + classInfo.id + "/assigment");
             }).catch(err => {
                 console.log("request prof add assignment request fail : " + err);
             }).finally(() =>{
                 console.log("request prof add assignment request end");
             });
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    async function addAssignmentTestCase(assignment_id) {
+        try {
+            let data = {
+                "assignment_id": assignment_id,
+            };
+            
+            console.log("request prof add assignment testcase request");
+            for (let i = 0; i < testcases.length; i++) {
+                data = {
+                    ...data,
+                    "input": testcases[i].input,
+                    "output": testcases[i].output,
+                }
+                await axiosInstance.post("/testcase/", data).then(res => {
+                    console.log(res)
+                }).catch(err => {
+                    console.log("request prof add assignment testcase request fail : " + err);
+                }).finally(() =>{
+                    console.log("request prof add assignment testcase request end");
+                });
+            }
         } catch(err) {
             console.log(err);
         }
