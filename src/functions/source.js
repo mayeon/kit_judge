@@ -10,15 +10,15 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(
-    function(config) {
+    function (config) {
         const access_token = sessionStorage.getItem("access_token");
-        if(access_token) {
+        if (access_token) {
             config.headers.common["Authorization"] = `Bearer ${access_token.replace(/"/g, '')}`;
         }
         return config;
-    }, 
-    
-    function(err) {
+    },
+
+    function (err) {
         return Promise.reject(err);
     }
 )
