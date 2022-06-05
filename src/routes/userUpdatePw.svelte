@@ -27,10 +27,10 @@
                 alert("새 비밀번호가 일치하지 않습니다.");
             } else {
                 const userData = {
-                    "email": userInfo.email,
-                    "password": newPw,
-                    "name": userInfo.name,
-                    "student_id": userInfo.student_id
+                    email: userInfo.email,
+                    password: newPw,
+                    name: userInfo.name,
+                    student_id: userInfo.student_id
                 };
                 console.log(userData)
 

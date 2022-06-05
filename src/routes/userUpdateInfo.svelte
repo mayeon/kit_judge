@@ -24,10 +24,10 @@
         if (userInfo.email != newEmail) {
             if (checkEmailFormat(newEmail)) {
                 const userData = {
-                    "email": newEmail,
-                    "password": userInfo.password,
-                    "name": userInfo.name,
-                    "student_id": userInfo.student_id
+                    email: newEmail,
+                    password: userInfo.password,
+                    name: userInfo.name,
+                    student_id: userInfo.student_id
                 };
 
                 console.log("update user email request");
