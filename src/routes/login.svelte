@@ -1,6 +1,6 @@
 <script>
-    import { axiosInstance, sourceURL } from "../functions/source.js"
-    import { get } from "svelte/store"
+    import { axiosInstance, sourceURL } from "../functions/source.js";
+    import { get } from "svelte/store";
     import { userInfoStore, isLoggedIn } from "../functions/store.js";
     import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
@@ -12,7 +12,7 @@
         email,
         required,
     } from "svelte-use-form";
-    
+
     const form = useForm();
     const requiredMessage = "필수 기입 항목입니다.";
 
@@ -22,44 +22,56 @@
     async function login() {
         try {
             const useAccount = {
-                "email": userEmail,
-                "password": userPw
+                email: userEmail,
+                password: userPw,
             };
 
             console.log("login request");
-            await axiosInstance.post("/auth/login", JSON.stringify(useAccount))
-            .then(res => {
-                sessionStorage.removeItem('access_token');
-                sessionStorage.removeItem('refresh_token');
-                sessionStorage.setItem('access_token', JSON.stringify(res.data.access_token));
-                sessionStorage.setItem('refresh_token', JSON.stringify(res.data.refresh_token));
+            await axiosInstance
+                .post("/auth/login", JSON.stringify(useAccount))
+                .then((res) => {
+                    sessionStorage.removeItem("access_token");
+                    sessionStorage.removeItem("refresh_token");
+                    sessionStorage.setItem(
+                        "access_token",
+                        JSON.stringify(res.data.access_token)
+                    );
+                    sessionStorage.setItem(
+                        "refresh_token",
+                        JSON.stringify(res.data.refresh_token)
+                    );
 
-                axiosInstance.get("/user/me")
-                .then(res => {
-                    const userData = {
-                        ...useAccount,
-                        student_id: res.data.student_id,
-                        name: res.data.name,
-                        type: res.data.type
-                    };
-                    userInfoStore.set(userData);
-                    sessionStorage.setItem("type", userData.type);
-                }).catch(err => {
-                    console.log("my info requset fail : " + err);
-                }).finally(() => {
-                    console.log("my info request end")
+                    axiosInstance
+                        .get("/user/me")
+                        .then((res) => {
+                            const userData = {
+                                ...useAccount,
+                                student_id: res.data.student_id,
+                                name: res.data.name,
+                                type: res.data.type,
+                            };
+                            userInfoStore.set(userData);
+                            sessionStorage.setItem("type", userData.type);
+                        })
+                        .catch((err) => {
+                            console.log("my info requset fail : " + err);
+                        })
+                        .finally(() => {
+                            console.log("my info request end");
+                        });
+                    // $isLoggedIn = 1;
+                    isLoggedIn.setStorage(1);
+                    push("/class");
+                })
+                .catch((err) => {
+                    alert("계정 정보를 확인해주세요.");
+                    console.log("login requset fail : " + err);
+                })
+                .finally(() => {
+                    console.log("login request end");
                 });
-                // $isLoggedIn = 1;
-                isLoggedIn.setStorage(1);
-                push("/class");
-            }).catch(err => {
-                alert("계정 정보를 확인해주세요.");
-                console.log("login requset fail : " + err);
-            }).finally(() => {
-                console.log("login request end");
-            });
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            console.log(err);
         }
     }
 </script>
@@ -108,7 +120,8 @@
                             id="register-btn"
                             type="button"
                             class="btn btn-outline-secondary"
-                            onclick="location.href='/#/user/new'">회원가입</button
+                            onclick="location.href='/#/user/new'"
+                            >회원가입</button
                         >
                     </div>
 
@@ -125,7 +138,6 @@
             </div>
         </form>
     </div>
-    
 {/if}
 
 <!-- <pre>
