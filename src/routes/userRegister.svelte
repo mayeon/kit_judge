@@ -31,7 +31,6 @@
     const config = {
         method: "post",
         url: `${sourceURL}/user/`,
-        headers: {},
         data: data,
     };
 

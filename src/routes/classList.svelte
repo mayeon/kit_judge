@@ -23,22 +23,17 @@
                 console.log(error);
             });
     });
+
+    function handleClick(classRoomId) {
+        push(`/class/${classRoomId}/assigment`);
+    }
 </script>
 
 <LayoutGrid>
     {#each classList as classroom, i}
         <Cell span={2}>
-            <Paper>
-                <div>
-                    <Title>{classroom.name}</Title>
-                    <IconButton
-                        class="material-icons"
-                        on:click={() => push("/class/student")}
-                    >
-                        groups
-                    </IconButton>
-                    <IconButton class="material-icons">delete</IconButton>
-                </div>
+            <Paper on:click={() => handleClick(classroom.id)}>
+                <Title>{classroom.name}</Title>
                 <Subtitle>교수자 : {classroom.professor_name}</Subtitle>
                 <Subtitle>년도 : {classroom.year}</Subtitle>
                 <Subtitle>학기 : {classroom.semester}</Subtitle>
