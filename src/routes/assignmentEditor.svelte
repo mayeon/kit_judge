@@ -1,4 +1,5 @@
 <script>
+    import { axiosInstance } from "../functions/source.js";
     import { onMount } from "svelte";
     import Textfield from "@smui/textfield";
     import HelperText from "@smui/textfield/helper-text";
@@ -13,7 +14,7 @@
     import Quill from "quill";
     let quill = null;
 
-    onMount(() => {
+    onMount(async() => {
         let container = document.getElementById("editor");
         quill = new Quill(container, {
             modules: {
@@ -35,14 +36,33 @@
             placeholder: "Type something...",
             theme: "snow", // or 'bubble'
         });
+
+        try {
+            console.log("request prof classroom request");
+            await axiosInstance.get("/classroom/").then(res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    classes[i] = {
+                        id: res.data[i].id, 
+                        className: res.data[i].name
+                    };
+                }
+            }).catch(err => {
+                console.log("request prof classroom request fail : " + err);
+            }).finally(() =>{
+                console.log("request prof classroom request end");
+            });
+        } catch(err) {
+            console.log(err);
+        }
     });
 
     let title = "";
-    let className = "";
+    let classInfo = "";
     let start = new Date();
     let end = new Date();
 
-    let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
+    // let classes = ["자연어처리", "알고리즘", "프로그래밍 입문"];
+    let classes = [];
 
     let testcases = [];
     let testcaseInput = "";
@@ -73,6 +93,43 @@
     function deleteCase(testcase) {
         testcases = testcases.filter((element) => element !== testcase);
     }
+
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    function convertDateFormat(source) {
+        source.setHours(source.getHours() + 9);
+        return source.toISOString().substring(0, 23);
+    }
+
+    async function addAssignment() {
+        try {
+            const data = {
+                "classroom_id": classInfo.id,
+                "title": title,
+                "desc": quill.getText(0, quill.getLength()-1),
+                "start_date": convertDateFormat(start), //UTC
+                "end_date": convertDateFormat(end), //UTC
+                "parent_id": null
+            };
+            
+            console.log("request prof add assignment request");
+            await axiosInstance.post("/assignment/", data).then(res => {
+                console.log(res.data.id);
+            }).catch(err => {
+                console.log("request prof add assignment request fail : " + err);
+            }).finally(() =>{
+                console.log("request prof add assignment request end");
+            });
+        } catch(err) {
+            console.log(err);
+        }
+    }
 </script>
 
 <svelte:head>
@@ -82,10 +139,9 @@
 <!-- <svelte:window on:keydown={handleKeydown}/> -->
 <Paper class="assignment-editor-paper">
     <div class="assignment-editor-subject-title"> 
-        <Select bind:value={className} label="과목명" class="assignment-editor-subject">
-            <Option value="" />
+        <Select bind:value={classInfo} label="과목명" class="assignment-editor-subject">
             {#each classes as class_name}
-                <Option value={class_name}>{class_name}</Option>
+                <Option value={class_name}>{class_name.className}</Option>
             {/each}
         </Select>
 
@@ -171,7 +227,7 @@
 </Paper>
 <br />
 
-<Button variant="raised" class="button-shaped-round">제출</Button>
+<Button variant="raised" class="button-shaped-round" on:click={addAssignment}>제출</Button>
 
 <style>
     main {

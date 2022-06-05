@@ -125,6 +125,22 @@ a:visited {
     .main-assignments {
         text-align: left;
     }
+
+    .add-assignment {
+        display: inline-block;
+        position: relative;
+        max-width: 8rem;
+        width: 8rem;
+        max-height: 8rem;
+        height: 8rem;
+        top: -6.5rem;
+        left: 3rem;
+
+        .add-assignment-icon {
+            position: relative;
+            margin: 0, auto;
+        }
+    }
 }
 
 // .main-assignments-container {
