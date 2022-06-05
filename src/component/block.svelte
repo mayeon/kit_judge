@@ -3,7 +3,9 @@
     export let class_name;
     export let explain;
     export let d_day;
+    export let assignment_id;
 
+    import { axiosInstance } from "../functions/source.js";
     import "svelte-material-ui/bare.css";
     import Paper, { Title, Subtitle, Content } from "@smui/paper";
     import IconButton, { Icon } from "@smui/icon-button";
@@ -11,15 +13,27 @@
 
     let toggleClicked = 0;
     let initialOff = false;
+
+    async function deleteAssignment() {
+        try {
+            const assignmentId = "";
+
+            console.log("request delete assignment request");
+            await axiosInstance.delete("/assignment" + assignmentId)
+            .catch(err => {
+                console.log("request delete assignment request fail : " + err);
+            }).finally(() => {
+                console.log("request delete assignment request end");
+            })
+        } catch(err) {
+            console.log(err);
+        }
+    }
 </script>
 
 <div class="paper">
     <Paper>
         <div class="title">
-            <!-- <div id="assignment">
-                <Title>과제이름:</Title>
-            </div> -->
-
             <div id="assignment-name">
                 <Title class="assignment-block-title">{name}</Title>
             </div>
@@ -37,6 +51,8 @@
         <div id="d-day">
             <Subtitle>디데이 {d_day}</Subtitle>
         </div>
+
+        <Button on:click={deleteAssignment}>삭제</Button>
     </Paper>
 </div>
 
