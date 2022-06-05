@@ -12,23 +12,70 @@
         passwordMatch,
         containNumbers,
     } from "../functions/customValidators";
+    import { axiosInstance, sourceURL } from "../functions/source";
 
     const form = useForm();
     const requiredMessage = "필수 항목입니다.";
-    let type = false;
+    const data = {
+        name: "",
+        year: "",
+        semester: "",
+    };
+
+    function handleSubmit() {
+        axiosInstance
+            .post("/classroom/", data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 </script>
 
 <main>
-    <form use:form id="register">
+    <form use:form id="register" on:submit|preventDefault={handleSubmit}>
         <h1>강의실 추가</h1>
 
         <div class="input-box">
             <input
                 type="text"
                 class="form-control"
-                name="id"
+                name="name"
                 use:validators={[required]}
-                placeholder="강의실 아이디"
+                placeholder="강의실 이름"
+                bind:value={data.name}
+            />
+            <div class="hint">
+                <HintGroup for="id">
+                    <Hint on="required">{requiredMessage}</Hint>
+                </HintGroup>
+            </div>
+        </div>
+        <div class="input-box">
+            <input
+                type="text"
+                class="form-control"
+                name="년도"
+                use:validators={[required]}
+                placeholder="년도"
+                bind:value={data.year}
+            />
+            <div class="hint">
+                <HintGroup for="id">
+                    <Hint on="required">{requiredMessage}</Hint>
+                </HintGroup>
+            </div>
+        </div>
+        <div class="input-box">
+            <input
+                type="text"
+                class="form-control"
+                name="학기"
+                use:validators={[required]}
+                placeholder="학기"
+                bind:value={data.semester}
             />
             <div class="hint">
                 <HintGroup for="id">
@@ -43,7 +90,6 @@
         id="register-btn"
         class="btn btn-outline-secondary"
         disabled={!$form.valid}
-        on:click|preventDefault
     >
         제출
     </button>

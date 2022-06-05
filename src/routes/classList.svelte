@@ -31,8 +31,15 @@
     }
 
     function handleNewClass() {
-        console.log(get(userInfoStore));
-        // push("/class/new");
+        const type = get(userInfoStore).type;
+
+        if (type == 1) {
+            //학생
+            push("/class/join");
+        } else if (type == 2) {
+            // 교수자
+            push("/class/new");
+        }
     }
 </script>
 

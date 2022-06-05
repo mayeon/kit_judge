@@ -28,7 +28,7 @@
                 class="form-control"
                 name="id"
                 use:validators={[required]}
-                placeholder="강의실 이름"
+                placeholder="강의실 아이디"
             />
             <div class="hint">
                 <HintGroup for="id">
