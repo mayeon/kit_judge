@@ -8,6 +8,8 @@
     import { get } from "svelte/store";
     import { userInfoStore } from "../functions/store.js";
 
+    const userType = sessionStorage.getItem("type");
+
     const config = {
         method: "get",
         url: `${sourceURL}/classroom/`,
@@ -31,12 +33,10 @@
     }
 
     function handleNewClass() {
-        const type = sessionStorage.getItem("type");
-
-        if (type == "1") {
+        if (userType == "1") {
             //학생
             push("/class/join");
-        } else if (type == "2") {
+        } else if (userType == "2") {
             // 교수자
             push("/class/new");
         }
@@ -46,8 +46,21 @@
 <LayoutGrid>
     {#each classList as classroom, i}
         <Cell span={2}>
-            <Paper on:click={() => handleClick(classroom.id)}>
-                <Title>{classroom.name}</Title>
+            <Paper>
+                <Title on:click={() => handleClick(classroom.id)}
+                    >{classroom.name}</Title
+                >
+                {#if userType == "2"}
+                    <div>
+                        <IconButton
+                            class="material-icons"
+                            on:click={() =>
+                                push(`/class/${classroom.id}/student`)}
+                        >
+                            groups
+                        </IconButton>
+                    </div>
+                {/if}
                 <Subtitle>교수자 : {classroom.professor_name}</Subtitle>
                 <Subtitle>년도 : {classroom.year}</Subtitle>
                 <Subtitle>학기 : {classroom.semester}</Subtitle>

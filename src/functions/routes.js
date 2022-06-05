@@ -42,7 +42,7 @@ const routes = {
     "/class": ClassList,
     "/class/new": ClassNew,
     "/class/join": ClassJoin,
-    "/class/student": ClassStudentControll,
+    "/class/:classId/student": ClassStudentControll,
     "/class/:classId/assigment": AssignmentList,
 
     "/test": Test,
