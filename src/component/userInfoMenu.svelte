@@ -1,43 +1,35 @@
 <script>
+    import { axiosInstance, sourceURL } from "../functions/source.js"
+    import { push } from "svelte-spa-router";
     import Paper from "@smui/paper";
     import Button, { Label } from '@smui/button'; 
     import { link } from "svelte-spa-router";
 
     const elevation = 10;
-    const testUserDbPw = "123";
 
     function checkUserLeave() { // 탈퇴 시 실행
-         if (confirm("정말 탈퇴하시겠습니까?") == true) {
-            checkPw(userLeave);
+         if (confirm("정말 탈퇴하시겠습니까? ('확인' 클릭 시 탈퇴 진행)") == true) {
+            deleteUser();
         } else {
             return false;
         }
     }
 
-    const userLeave = function(inputPw) { // 탈퇴 시
-        if (inputPw == testUserDbPw) {
-            alert("탈퇴되었습니다.");
-            location.href="/#/login"; // 로그인 페이지로 이동
-        } else {
-            alert("비밀번호가 일치하지 않습니다.");
+    async function deleteUser() {
+        try {
+            await axiosInstance.delete("/user/me")
+            .then(res => {
+                sessionStorage.removeItem('access_token');
+                sessionStorage.removeItem('refresh_token');
+                push("/");
+            }).catch(err => {
+
+            }).finally(() => {
+
+            })
+        } catch(err) {
+            console.log(err);
         }
-    }
-
-    function checkUserChangePw() { // pw 변경 시 실행
-        checkPw(changePw)
-    }
-
-    const changePw = function(inputPw) { // 변경시
-        if (inputPw != testUserDbPw) {
-            alert("비밀번호가 일치하지 않습니다.");
-        } else {
-            location.href="/#/user/update/pw"
-        }
-    }
-
-    function checkPw(func) {
-        let inputPw = prompt('현재 비밀번호를 입력해주세요', '');
-        func(inputPw);
     }
 </script>
 
@@ -51,7 +43,7 @@
         <Label>회원 정보 변경</Label>
     </Button>
 
-    <Button on:click={checkUserChangePw} class="user-update-pw-btn">
+    <Button href="/#/user/update/pw" class="user-update-pw-btn">
         <Label>비밀번호 변경</Label>
     </Button>
 

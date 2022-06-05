@@ -1,24 +1,22 @@
 <script>
-    import { axios, axiosInstance, sourceURL } from "../functions/source.js"
+    import { axiosInstance, sourceURL } from "../functions/source.js"
     import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
     import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
     import IconButton, { Icon } from "@smui/icon-button";
-    import {get} from "svelte/store"
-    import {userInfoStore} from "../functions/store.js";
+    import { get } from "svelte/store"
+    import { userInfoStore, isLoggedIn } from "../functions/store.js";
 
     const prominent = false;
     const dense = true;
 
-    console.log(sessionStorage.getItem('access_token'));
-    
     async function getUserInfo() {
         try {
             console.log("my info requset");
             await axiosInstance.get("/user/me")
             .then(res => {
                 const userData = {
-                    id: res.data.student_id,
+                    student_id: res.data.student_id,
                     name: res.data.name,
                     email: res.data.email
                 };
@@ -41,6 +39,7 @@
             .then(res => {
                 sessionStorage.removeItem('access_token')
                 sessionStorage.removeItem('refresh_token')
+                $isLoggedIn = null;
                 push("/");
             }).catch(err => {
                 console.log("logout request fail : " + err);
@@ -57,12 +56,16 @@
     <TopAppBar variant="static" {prominent} {dense} color="secondary">
         <Row>
             <Section>
-                <Title on:click={() => push("/")}
-                    >금오공대 과제 채점 시스템</Title
-                >
             </Section>
 
-            {#if true}
+            <!-- 로그인 성공 -->
+            {#if $isLoggedIn}
+                <Section>
+                    <Title on:click={() => push("/class")}
+                        >금오공대 과제 채점 시스템</Title
+                    >
+                </Section>
+
                 <Section>
                     <a href="/class" use:link> 강의실 </a>
                 </Section>
@@ -79,6 +82,19 @@
                     <Title on:click={() => logout()}
                         >로그아웃</Title
                     >
+                </Section>
+            {:else}
+                <Section>
+                    <Title on:click={() => push("/")}
+                        >금오공대 과제 채점 시스템</Title
+                    >
+                </Section>
+
+                <!-- 공간차지용 -->
+                <Section>
+                </Section>
+
+                <Section>
                 </Section>
             {/if}
         </Row>
