@@ -1,5 +1,6 @@
 <script>
     import { axiosInstance, sourceURL } from "../functions/source.js"
+    import { get } from "svelte/store"
     import { userInfoStore, isLoggedIn } from "../functions/store.js";
     import { push } from "svelte-spa-router";
     import { link } from "svelte-spa-router";
@@ -20,20 +21,33 @@
 
     async function login() {
         try {
-            const userData = {
+            const useAccount = {
                 "email": userEmail,
                 "password": userPw
             };
 
             console.log("login request");
-            await axiosInstance.post("/auth/login", JSON.stringify(userData))
+            await axiosInstance.post("/auth/login", JSON.stringify(useAccount))
             .then(res => {
                 sessionStorage.removeItem('access_token');
                 sessionStorage.removeItem('refresh_token');
                 sessionStorage.setItem('access_token', JSON.stringify(res.data.access_token));
                 sessionStorage.setItem('refresh_token', JSON.stringify(res.data.refresh_token));
 
-                userInfoStore.set(userData);
+                axiosInstance.get("/user/me")
+                .then(res => {
+                    const userData = {
+                        ...useAccount,
+                        student_id: res.data.student_id,
+                        name: res.data.name,
+                        type: res.data.type
+                    };
+                    userInfoStore.set(userData);
+                }).catch(err => {
+                    console.log("my info requset fail : " + err);
+                }).finally(() => {
+                    console.log("my info request end")
+                });
                 // $isLoggedIn = 1;
                 isLoggedIn.setStorage(1);
                 push("/class");
@@ -41,7 +55,7 @@
                 alert("계정 정보를 확인해주세요.");
                 console.log("login requset fail : " + err);
             }).finally(() => {
-                console.log("login request end")
+                console.log("login request end");
             });
         } catch(err) {
             console.log(err)
