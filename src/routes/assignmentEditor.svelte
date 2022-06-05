@@ -121,6 +121,7 @@
             
             console.log("request prof add assignment request");
             await axiosInstance.post("/assignment/", data).then(res => {
+                addAssignmentTestCase(res.data.id);
                 push("/class/" + classInfo.id + "/assigment");
             }).catch(err => {
                 console.log("request prof add assignment request fail : " + err);
@@ -145,13 +146,13 @@
                     "input": testcases[i].input,
                     "output": testcases[i].output,
                 }
-                await axiosInstance.post("/testcase/", data).then(res => {
-                    console.log(res)
-                }).catch(err => {
-                    console.log("request prof add assignment testcase request fail : " + err);
-                }).finally(() =>{
-                    console.log("request prof add assignment testcase request end");
-                });
+                console.log(data)
+                await axiosInstance.post("/testcase/", data)
+                    .catch(err => {
+                        console.log("request prof add assignment testcase request fail : " + err);
+                    }).finally(() =>{
+                        console.log("request prof add assignment testcase request end");
+                    });
             }
         } catch(err) {
             console.log(err);
@@ -231,7 +232,7 @@
             </Textfield>
         </div>
 
-        <div class="assignment-editor-testcase-score">
+        <!-- <div class="assignment-editor-testcase-score">
             <Textfield
                 textarea
                 bind:value={testcaseScore}
@@ -245,7 +246,7 @@
                     >테스트케이스의 점수를 넣어주세요.</HelperText
                 >
             </Textfield>
-        </div>
+        </div> -->
 
         <IconButton class="material-icons assignment-editor-testcase-add" on:click={addTestCase}
             >add</IconButton

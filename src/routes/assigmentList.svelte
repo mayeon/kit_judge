@@ -19,6 +19,10 @@
                 console.log(error);
             });
     });
+
+    function handleClick(assignmentId) {
+        push("/assignment/detail/" + assignmentId);
+    }
 </script>
 
 <div class="main-assignments-container">
@@ -27,7 +31,8 @@
     <LayoutGrid>
         {#each assigmentList as assigment, i}
             <Cell span={3}>
-                <Paper>
+                <Paper on:click={() => handleClick(assigment.id)}>
+                <!-- <Paper> -->
                     <Title>{assigment.title}</Title>
                     <Subtitle>시작일: {assigment.start_date}</Subtitle>
                     <Subtitle>종료일: {assigment.end_date}</Subtitle>

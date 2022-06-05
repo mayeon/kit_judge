@@ -35,7 +35,7 @@ const routes = {
     "/code": CodeWrite,
     "/codeAttach": CodeAttach,
 
-    "/assignment/:assignmentId": AssignmentDetail,
+    "/assignment/detail/:assignmentId": AssignmentDetail,
     "/assignment/new": AssignmentWrite,
     "/assignment/submit": AssignmentResult,
 
