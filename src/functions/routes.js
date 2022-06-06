@@ -8,9 +8,10 @@ import UserUpdatePw from "../routes/userUpdatePw.svelte";
 
 import AssignmentWrite from "../routes/assignmentEditor.svelte";
 import AssignmentDetail from "../routes/assignmentDetail.svelte";
-import AssignmentResult from "../routes/assignmentResult.svelte";
+import AssignmentSubmission from "../routes/assignmentSubmission.svelte";
 import AssignmentList from "../routes/assigmentList.svelte";
 import AssignmentModify from "../routes/assignmentModify.svelte";
+import AssignmentTestcaseResult from "../routes/assignmentTestcaseResult.svelte";
 
 import ClassNew from "../routes/classNew.svelte";
 import ClassJoin from "../routes/classJoin.svelte";
@@ -39,7 +40,8 @@ const routes = {
     "/assignment/detail/:assignmentId": AssignmentDetail,
     "/assignment/new": AssignmentWrite,
     "/assignment/edit/:assignmentId": AssignmentModify,
-    "/assignment/result/:assignmentId": AssignmentResult,
+    "/assignment/submission/:assignmentId": AssignmentSubmission,
+    "/assignment/testcase-result/:assignmentId": AssignmentTestcaseResult,
 
     "/class": ClassList,
     "/class/new": ClassNew,
