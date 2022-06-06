@@ -10,6 +10,7 @@ import AssignmentWrite from "../routes/assignmentEditor.svelte";
 import AssignmentDetail from "../routes/assignmentDetail.svelte";
 import AssignmentResult from "../routes/assignmentResult.svelte";
 import AssignmentList from "../routes/assigmentList.svelte";
+import AssignmentModify from "../routes/assignmentModify.svelte";
 
 import ClassNew from "../routes/classNew.svelte";
 import ClassJoin from "../routes/classJoin.svelte";
@@ -32,11 +33,12 @@ const routes = {
     "/user/new": UserRegister,
 
     "/main": Main,
-    "/code/write": CodeWrite,
-    "/code/attach": CodeAttach,
+    "/code/write/:assignmentId": CodeWrite,
+    "/code/attach/:assignmentId": CodeAttach,
 
     "/assignment/detail/:assignmentId": AssignmentDetail,
     "/assignment/new": AssignmentWrite,
+    "/assignment/edit/:assignmentId": AssignmentModify,
     "/assignment/submit": AssignmentResult,
 
     "/class": ClassList,
