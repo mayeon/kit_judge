@@ -69,7 +69,7 @@
 
         <!-- TODO url 변경 -->
         {#if sessionStorage.getItem("type") == 2}
-            <Button variant="raised" class="code-submit-button button-shaped-round" on:click={() => push("/assignment/result/" + params.assignmentId)}>제출자 확인</Button>
+            <Button variant="raised" class="code-submit-button button-shaped-round" on:click={() => push("/assignment/submission/" + params.assignmentId)}>제출자 확인</Button>
         {/if}
 
         {#if sessionStorage.getItem("type") == 1}
