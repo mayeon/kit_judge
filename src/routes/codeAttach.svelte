@@ -3,6 +3,7 @@
     import Button, { Group, Label } from "@smui/button";
     import Paper, { Title, Subtitle, Content } from "@smui/paper";
     import { axios, sourceURL } from "../functions/source.js"
+    import { push } from "svelte-spa-router";
 
     export let params = {};
 
@@ -10,7 +11,7 @@
 
     function addFiles() {
         let fileData = document.getElementById("file-data").files;
-        if (files.getItem("file")) {
+        if (file.get("file")) {
             alert("이미 파일이 존재합니다.")
         } else {
             addTagInFile(fileData[0]); // 단일 선택이므로 첫 요소만
@@ -18,10 +19,10 @@
 
         // TODO 강의실 id 수정 필요
         let classroom_id = 1;
-        let desc = "de";
+        let desc = "";
         file.append("classroom_id", classroom_id);
         file.append("desc", desc);
-        // document.querySelector("input[type=file]").value = "";
+        document.querySelector("input[type=file]").value = "";
     }
 
     function addTagInFile(uploadFile) {
@@ -29,7 +30,7 @@
 
         let uploadedFile = document.createElement("div");
         uploadedFile.setAttribute("class", "file");
-        uploadedFile.setAttribute("id", "file" + i);
+        uploadedFile.setAttribute("id", "file");
 
         let uploadedFileName = document.createElement("p");
         uploadedFileName.setAttribute("class", "file-name");
@@ -50,7 +51,7 @@
 
     function removeFile(obj) {
         let p = obj.parentElement;
-        files.delete(p.id);
+        file.delete(p.id);
         p.remove();
     }
 
@@ -62,6 +63,7 @@
         axiosInstance.post(`/assignment/${params.assignmentId}/submit`, file, config)
             .then(res => {
                 console.log(res.data)
+                push("/class");
             }).catch(err => {
                 console.log(err);
                 const errStatus = err.response.status;
