@@ -4,6 +4,8 @@
     import Card, { Content } from "@smui/card";
     import Testcase from "../component/Testcase.svelte";
     import { onMount } from "svelte";
+    import Button from "@smui/button";
+    import { push } from "svelte-spa-router";
 
     export let params = {};
 
@@ -52,6 +54,14 @@
             <Testcase input={testcase.input} output={testcase.output}/>
             <br />
         {/each}
+        
+        {#if sessionStorage.getItem("type") == 2}
+            <Button variant="raised" class="code-submit-button button-shaped-round" on:click={() => push("/assignment/edit/" + params.assignmentId)}>수정</Button>
+        {/if}
+
+        {#if sessionStorage.getItem("type") == 1}
+            <Button variant="raised" class="code-submit-button button-shaped-round" on:click={() => push("/code/attach/" + params.assignmentId)}>제출</Button>
+        {/if}
     </Paper>
 </div>
 
