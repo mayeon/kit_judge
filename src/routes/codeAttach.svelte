@@ -17,11 +17,7 @@
             addTagInFile(fileData[0]); // 단일 선택이므로 첫 요소만
         }
 
-        // TODO 강의실 id 수정 필요
-        let classroom_id = 1;
-        let desc = "";
-        file.append("classroom_id", classroom_id);
-        file.append("desc", desc);
+        file.append("desc", "");
         document.querySelector("input[type=file]").value = "";
     }
 
