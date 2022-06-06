@@ -1,43 +1,56 @@
 <script>
+    import { axiosInstance } from "../functions/source.js";
     import Button, { Group, Label } from "@smui/button";
     import Paper, { Title, Subtitle, Content } from "@smui/paper";
     import { axios, sourceURL } from "../functions/source.js"
 
-    let formData = new FormData();
+    export let params = {};
+
+    let file = new FormData();
 
     function addFiles() {
         let fileData = document.getElementById("file-data").files;
-        console.log(fileData);
-        
-        let attachedFiles = document.getElementById("uploaded-files");
-        for (let i = 0; i < fileData.length; i++) {
-            formData.append("uploaded-file-" + i, fileData[i], fileData[i].name);
-
-            let uploadedFile = document.createElement("div");
-            uploadedFile.setAttribute("class", "uploaded-file");
-            uploadedFile.setAttribute("id", "uploaded-file-" + i);
-
-            let uploadedFileName = document.createElement("p");
-            uploadedFileName.setAttribute("class", "uploaded-file-name");
-            uploadedFileName.innerHTML = fileData[i].name;
-            uploadedFile.appendChild(uploadedFileName);
-
-            let uploadedFileDeleteBtn = document.createElement("a");
-            uploadedFileDeleteBtn.setAttribute("class", "uploaded-file-delete");
-            uploadedFileDeleteBtn.innerHTML = "x";
-            uploadedFileDeleteBtn.onclick = function() {
-                removeFile(this);
-            }
-            uploadedFile.appendChild(uploadedFileDeleteBtn);
-
-            attachedFiles.appendChild(uploadedFile);
+        if (files.getItem("file")) {
+            alert("이미 파일이 존재합니다.")
+        } else {
+            addTagInFile(fileData[0]); // 단일 선택이므로 첫 요소만
         }
-        document.querySelector("input[type=file]").value = "";
+
+        // TODO 강의실 id 수정 필요
+        let classroom_id = 1;
+        let desc = "de";
+        file.append("classroom_id", classroom_id);
+        file.append("desc", desc);
+        // document.querySelector("input[type=file]").value = "";
+    }
+
+    function addTagInFile(uploadFile) {
+        file.append("file", uploadFile, uploadFile.name);
+
+        let uploadedFile = document.createElement("div");
+        uploadedFile.setAttribute("class", "file");
+        uploadedFile.setAttribute("id", "file" + i);
+
+        let uploadedFileName = document.createElement("p");
+        uploadedFileName.setAttribute("class", "file-name");
+        uploadedFileName.innerHTML = uploadFile.name;
+        uploadedFile.appendChild(uploadedFileName);
+
+        let uploadedFileDeleteBtn = document.createElement("a");
+        uploadedFileDeleteBtn.setAttribute("class", "file-delete");
+        uploadedFileDeleteBtn.innerHTML = "x";
+        uploadedFileDeleteBtn.onclick = function() {
+            removeFile(this);
+        }
+        uploadedFile.appendChild(uploadedFileDeleteBtn);
+
+        let attachedFiles = document.getElementById("uploaded-files");
+        attachedFiles.appendChild(uploadedFile);
     }
 
     function removeFile(obj) {
         let p = obj.parentElement;
-        formData.delete(p.id);
+        files.delete(p.id);
         p.remove();
     }
 
@@ -46,27 +59,29 @@
             headers: { "Content-Type" : "multipart/form-data" }
         };
 
-        axiosPost(sourceURL + "/testDB", {data: formData}, config).then((res) => console.log(res));
-    }
-
-    async function axiosPost(url, data, headers = {"content-type": "application/json; charset=UTF-8",}) {
-        try {
-            return await axios.post(url, data, headers);
-        } catch (e) {
-            console.log(e);
-        }
+        axiosInstance.post(`/assignment/${params.assignmentId}/submit`, file, config)
+            .then(res => {
+                console.log(res.data)
+            }).catch(err => {
+                console.log(err);
+                const errStatus = err.response.status;
+                if(errStatus == 520) {
+                    alert("확장자가 일치하지 않습니다. (.zip, .java)");
+                } else if(errStatus == 521) {
+                    alert("파일을 업로드하지 않았습니다.");
+                }
+            }).finally(() => console.log("submit assignment"));
     }
 </script>
 
 <div class="code-container">
     <Paper>
-        <!-- TODO input tag -->
-        <input type="file" id="file-data" multiple="multiple" on:change={addFiles} />
+        <input name="file" type="file" id="file-data" on:change={addFiles} />
 
         <div id="uploaded-files"> 
 
         </div>
-        <Button variant="raised" class="code-submit-button button-shaped-round" on:click={uploadFile} >제출</Button>
+        <Button form="submit-assignment" variant="raised" class="code-submit-button button-shaped-round" on:click={uploadFile} >제출</Button>
     </Paper>
 
 </div>
