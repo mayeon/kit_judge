@@ -28,7 +28,15 @@
         console.log("assignment detail testcase request");
         await axiosInstance.get(`/assignment/${params.assignmentId}/testcase`)
             .then(res => {
-                testcaseInfo = res.data;
+                let testcase = res.data;
+                for (let i = 0; i < testcase.length; i++) {
+                    if (testcase[i].enable) {
+                        testcaseInfo = [
+                            ...testcaseInfo,
+                            {"input": testcase[i].input, "output": testcase[i].output}
+                        ]
+                    } 
+                }
                 console.log(testcaseInfo)
             }).catch(err => {
                 console.log("assignment detail testcase request fail : " + err);
@@ -68,7 +76,7 @@
             <Button variant="raised" class="code-submit-button button-shaped-round" on:click={() => push("/code/attach/" + params.assignmentId)}>제출</Button>
         {/if}
 
-        {#if sessionStorage.getItem("type") == 2}
+        {#if sessionStorage.getItem("type") == 1}
             <Button variant="raised" class="code-submit-button button-shaped-round" on:click={() => push("/assignment/result/" + params.assignmentId)}>결과 확인</Button>
         {/if}
     </Paper>

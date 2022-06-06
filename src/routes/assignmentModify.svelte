@@ -58,7 +58,7 @@
         console.log("assignment detail request");
         await axiosInstance.get(`/assignment/${params.assignmentId}`)
             .then(res => {
-                assigmentInfo = res.data;
+                let assigmentInfo = res.data;
                 title = assigmentInfo.title;
                 start = new Date(assigmentInfo.start_date);
                 end = new Date(assigmentInfo.end_date);
@@ -74,13 +74,16 @@
         console.log("assignment detail testcase request");
         await axiosInstance.get(`/assignment/${params.assignmentId}/testcase`)
             .then(res => {
-                testcaseInfo = res.data;
+                let testcaseInfo = res.data;
                 console.log(testcaseInfo)
                 for (let i = 0; i < testcaseInfo.length; i++) {
-                    testcases = [
-                        ...testcases,
-                        {input: testcaseInfo[i].input, output: testcaseInfo[i].output}
-                    ]
+                    console.log(testcaseInfo[i].enable)
+                    if (testcaseInfo[i].enable) {
+                        testcases = [
+                            ...testcases,
+                            {id: testcaseInfo[i].id,input: testcaseInfo[i].input, output: testcaseInfo[i].output}
+                        ]
+                    }
                 }
             }).catch(err => {
                 console.log("assignment detail testcase request fail : " + err);
@@ -89,8 +92,6 @@
             });
     });
 
-    let assigmentInfo = {};
-    let testcaseInfo = {};
     let title = "";
     let classInfo = "";
     let start = new Date();
@@ -115,7 +116,7 @@
     function addTestCase() {
         testcases = [
             ...testcases,
-            { input: testcaseInput, output: testcaseOutput, score: testcaseScore},
+            { id: "", input: testcaseInput, output: testcaseOutput, score: testcaseScore },
         ];
         testcaseInput = "";
         testcaseOutput = "";
@@ -124,8 +125,18 @@
     }
 
     function deleteCase(testcase) {
+        console.log(testcase.id)
+        if (testcase.id != "") {
+            axiosInstance.delete("/testcase/" + testcase.id)
+                .then(res => {
+                    console.log("delete test case")
+                }).catch(err => {
+                    console.log("delete test case fail : " + err)
+                }).finally(() => {
+                    console.log("delete test case end")
+                })
+        }
         testcases = testcases.filter((element) => element !== testcase);
-        axiosInstance.delete("testcase")
     }
 
     function leftPad(value) {
@@ -174,18 +185,20 @@
             
             console.log("request prof add assignment testcase request");
             for (let i = 0; i < testcases.length; i++) {
-                data = {
-                    ...data,
-                    "input": testcases[i].input,
-                    "output": testcases[i].output,
+                if (testcases[i].id == "") {
+                    data = {
+                        ...data,
+                        "input": testcases[i].input,
+                        "output": testcases[i].output,
+                    }
+                    console.log(data)
+                    await axiosInstance.post("/testcase/", data)
+                        .catch(err => {
+                            console.log("request prof add assignment testcase request fail : " + err);
+                        }).finally(() =>{
+                            console.log("request prof add assignment testcase request end");
+                        });
                 }
-                console.log(data)
-                await axiosInstance.post("/testcase/", data)
-                    .catch(err => {
-                        console.log("request prof add assignment testcase request fail : " + err);
-                    }).finally(() =>{
-                        console.log("request prof add assignment testcase request end");
-                    });
             }
         } catch(err) {
             console.log(err);
