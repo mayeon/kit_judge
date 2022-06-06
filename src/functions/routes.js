@@ -39,7 +39,7 @@ const routes = {
     "/assignment/detail/:assignmentId": AssignmentDetail,
     "/assignment/new": AssignmentWrite,
     "/assignment/edit/:assignmentId": AssignmentModify,
-    "/assignment/submit": AssignmentResult,
+    "/assignment/result/:assignmentId": AssignmentResult,
 
     "/class": ClassList,
     "/class/new": ClassNew,
