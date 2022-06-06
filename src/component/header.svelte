@@ -37,8 +37,9 @@
             console.log("logout requset");
             await axiosInstance.delete("/auth/logout")
             .then(res => {
-                sessionStorage.removeItem('access_token')
-                sessionStorage.removeItem('refresh_token')
+                sessionStorage.removeItem('access_token');
+                sessionStorage.removeItem('refresh_token');
+                sessionStorage.removeItem('type');
                 isLoggedIn.deleteStorage();
                 push("/");
             }).catch(err => {
