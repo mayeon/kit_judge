@@ -34,8 +34,12 @@
             <Cell span={3}>
                 <Paper on:click={() => handleClick(assigment.id)}>
                     <Title>{assigment.title}</Title>
-                    <Subtitle>시작일: {assigment.start_date}</Subtitle>
-                    <Subtitle>종료일: {assigment.end_date}</Subtitle>
+                    <Subtitle
+                        >시작일: {assigment.start_date.split("T")[0]}</Subtitle
+                    >
+                    <Subtitle
+                        >종료일: {assigment.end_date.split("T")[0]}</Subtitle
+                    >
                 </Paper>
             </Cell>
         {/each}
