@@ -56,7 +56,8 @@
                     />
                     <Text>
                         <PrimaryText>{student.name}</PrimaryText>
-                        <SecondaryText>학번{student.student_id}</SecondaryText>
+                        <SecondaryText>학번: {student.student_id}</SecondaryText
+                        >
                     </Text>
                     <Meta class="material-icons">info</Meta>
                 </Item>
