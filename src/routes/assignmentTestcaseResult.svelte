@@ -17,15 +17,20 @@
         await axiosInstance.get(`/assignment/${params.assignmentId}/testresult`)
             .then(res => {
                 console.log(res.data)
-                testcaseResults = [
-                    ...testcaseResults,
-                    {
-                        "testcaseId": res.data.testcase_id,
-                        "testDate": res.data.date,
-                        "isSuccess": res.data.is_success,
-                        "isFailure": res.data.fail_cause
-                    }
-                ]
+                let testcaseResultsInfo = res.data;
+                
+                for (let i = 0; i < testcaseResultsInfo.length; i++) {
+                    testcaseResults = [
+                        ...testcaseResults,
+                        {
+                            "testcaseId": testcaseResultsInfo[i].testcase_id,
+                            "testDate": testcaseResultsInfo[i].date,
+                            "isSuccess": testcaseResultsInfo[i].is_success,
+                            "isFailure": testcaseResultsInfo[i].fail_cause
+                        }
+                    ]
+                }
+                console.log(testcaseResults)
             }).catch(err => {
                 console.log("assignment submission list request fail : " + err);
                 const errStatus = err.response.status;
@@ -37,6 +42,11 @@
                 console.log("assignment submission list request end");
             });
     });
+
+    function getCount() {
+        count++;
+        return count;
+    }
 </script>
 
 <Paper>
@@ -54,10 +64,20 @@
         <Body>
             {#each testcaseResults as testcaseResult}
                 <Row>
-                    <Cell>{count++}</Cell>
+                    <Cell>{getCount()}</Cell>
                     <Cell>{testcaseResult.testDate}</Cell>
-                    <Cell>{testcaseResult.isSuccess}</Cell>
-                    <Cell>{testcaseResult.isFailure}</Cell>
+
+                    {#if testcaseResult.isSuccess}
+                        <Cell>O</Cell>
+                    {:else}
+                        <Cell></Cell>
+                    {/if}
+
+                    {#if testcaseResult.isFailure}
+                        <Cell>O</Cell>
+                    {:else}
+                        <Cell></Cell>
+                    {/if}
                 </Row>
             {/each}
         </Body>

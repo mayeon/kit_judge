@@ -9,7 +9,7 @@
 
     let assignments = [];
 
-    let numCount = 1;
+    let count = 0;
     
     onMount(async () => {
         console.log("assignment submission list request");
@@ -34,6 +34,10 @@
             });
     });
 
+    function getCount() {
+        count++;
+        return count;
+    }
 </script>
 
 <Paper>
@@ -51,7 +55,7 @@
         <Body>
             {#each assignments as assignment}
                 <Row>
-                    <Cell>{numCount++}</Cell>
+                    <Cell>{getCount()}</Cell>
                     <Cell>{assignment.author_name}</Cell>
                     <Cell numeric>{assignment.score}</Cell>
                     <Cell>{assignment.submit_date}</Cell>
