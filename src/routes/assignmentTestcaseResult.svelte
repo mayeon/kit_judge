@@ -70,7 +70,7 @@
                     {#if testcaseResult.isSuccess}
                         <Cell>O</Cell>
                     {:else}
-                        <Cell></Cell>
+                        <Cell>X</Cell>
                     {/if}
 
                     <Cell>{testcaseResult.isFailure}</Cell>
