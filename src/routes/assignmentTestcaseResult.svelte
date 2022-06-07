@@ -58,7 +58,7 @@
                 <Cell>No.</Cell>
                 <Cell>테스트 일자</Cell>
                 <Cell>성공여부</Cell>
-                <Cell>실패여부</Cell>
+                <Cell>실패사유</Cell>
             </Row>
         </Head>
         <Body>
@@ -73,11 +73,7 @@
                         <Cell></Cell>
                     {/if}
 
-                    {#if testcaseResult.isFailure}
-                        <Cell>O</Cell>
-                    {:else}
-                        <Cell></Cell>
-                    {/if}
+                    <Cell>{testcaseResult.isFailure}</Cell>
                 </Row>
             {/each}
         </Body>
