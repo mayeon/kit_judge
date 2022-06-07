@@ -48,7 +48,7 @@
             <Row>
                 <Cell>제출번호</Cell>
                 <Cell>제출자</Cell>
-                <Cell numeric>점수</Cell>
+                <!-- <Cell numeric>점수</Cell> -->
                 <Cell>제출일자</Cell>
             </Row>
         </Head>
@@ -57,7 +57,7 @@
                 <Row>
                     <Cell>{getCount()}</Cell>
                     <Cell>{assignment.author_name}</Cell>
-                    <Cell numeric>{assignment.score}</Cell>
+                    <!-- <Cell numeric>{assignment.score}</Cell> -->
                     <Cell>{assignment.submit_date}</Cell>
                 </Row>
             {/each}
