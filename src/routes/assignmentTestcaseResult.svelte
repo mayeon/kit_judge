@@ -10,6 +10,8 @@
 
     let testcaseResults = [];
     
+    let count = 0;
+
     onMount(async () => {
         console.log("assignment submission list request");
         await axiosInstance.get(`/assignment/${params.assignmentId}/testresult`)
@@ -43,7 +45,7 @@
     <DataTable table$aria-label="assigment list" style="max-width: 100%;">
         <Head>
             <Row>
-                <Cell>테스트케이스ID</Cell>
+                <Cell>No.</Cell>
                 <Cell>테스트 일자</Cell>
                 <Cell>성공여부</Cell>
                 <Cell>실패여부</Cell>
@@ -52,7 +54,7 @@
         <Body>
             {#each testcaseResults as testcaseResult}
                 <Row>
-                    <Cell>{testcaseResult.testcaseId}</Cell>
+                    <Cell>{count++}</Cell>
                     <Cell>{testcaseResult.testDate}</Cell>
                     <Cell>{testcaseResult.isSuccess}</Cell>
                     <Cell>{testcaseResult.isFailure}</Cell>
